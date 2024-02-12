@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.0.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.2"
+gem "rails", "7.1.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -14,6 +14,9 @@ gem "pg", "~> 1.1"
 gem "devise"
 
 gem 'activeadmin'
+
+gem "jwt"
+
 
 # UI interface debugging-with-the-debug-gem
 gem "sassc"
