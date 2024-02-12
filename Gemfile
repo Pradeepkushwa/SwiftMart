@@ -19,6 +19,8 @@ gem "jwt"
 
 gem "actionmailer"
 
+gem "stripe"
+
 
 # UI interface debugging-with-the-debug-gem
 gem "sassc"
