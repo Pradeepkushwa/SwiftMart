@@ -8,6 +8,14 @@ Rails.application.routes.draw do
 
   post "/auth/login", to: "authentication#login"
 
+  resources :passwords, only: [:update]
+
+  resources :password_resets do
+   get :show_error, on: :collection
+   get :edit_error, on: :collection
+    
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

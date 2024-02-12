@@ -17,6 +17,8 @@ gem 'activeadmin'
 
 gem "jwt"
 
+gem "actionmailer"
+
 
 # UI interface debugging-with-the-debug-gem
 gem "sassc"

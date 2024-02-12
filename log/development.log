@@ -3870,3 +3870,108 @@ Processing by Admin::DashboardController#index as HTML
 Completed 200 OK in 14ms (Views: 11.7ms | ActiveRecord: 0.1ms | Allocations: 18530)
 
 
+Started PATCH "/passwords/2" for ::1 at 2024-02-12 16:08:33 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [PATCH] "/passwords/2"):
+  
+Started PATCH "/passwords/2" for ::1 at 2024-02-12 16:09:51 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"2", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (6.24ms)
+Completed 401 Unauthorized in 57703ms (Views: 1416.0ms | ActiveRecord: 3.8ms | Allocations: 3283915)
+
+
+Started GET "/users" for ::1 at 2024-02-12 16:11:09 +0530
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (10.91ms)
+Completed 200 OK in 42ms (Views: 36.5ms | ActiveRecord: 3.7ms | Allocations: 120077)
+
+
+Started PATCH "/passwords/4" for ::1 at 2024-02-12 16:11:38 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"4", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 401 Unauthorized in 46180ms (Views: 17.6ms | ActiveRecord: 3.5ms | Allocations: 169832)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8028510135882274500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddResetPasswordTokenToUsers (20240212105736)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" character varying[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" timestamp(6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_used" boolean[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240212105736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8028510135882274500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started PATCH "/password_resets/1" for ::1 at 2024-02-12 16:37:03 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+NameError (undefined local variable or method `password_resets_controller' for main:Object):
+  
+app/controllers/password_resets_controller.rb:1:in `<main>'
+Started PATCH "/password_resets/1" for ::1 at 2024-02-12 16:37:17 +0530
+  
+NameError (undefined local variable or method `password_resets_controller' for main:Object):
+  
+app/controllers/password_resets_controller.rb:1:in `<main>'
+Started PATCH "/password_resets/1" for ::1 at 2024-02-12 16:37:57 +0530
+Processing by PasswordResetsController#update as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = $1 LIMIT $2[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:28:in `update'
+Redirected to http://localhost:3000/password_resets/show_error
+Completed 302 Found in 14ms (ActiveRecord: 3.9ms | Allocations: 9846)
+
+
+Started GET "/password_resets/show_error" for ::1 at 2024-02-12 16:37:57 +0530
+Processing by PasswordResetsController#show_error as */*
+No template found for PasswordResetsController#show_error, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 630)
+
+
+Started PATCH "/password_resets/1" for ::1 at 2024-02-12 17:03:45 +0530
+Processing by PasswordResetsController#update as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = $1 LIMIT $2[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:28:in `update'
+Redirected to http://localhost:3000/password_resets/show_error
+Completed 302 Found in 13ms (ActiveRecord: 2.1ms | Allocations: 7125)
+
+
+Started GET "/password_resets/show_error" for ::1 at 2024-02-12 17:03:45 +0530
+Processing by PasswordResetsController#show_error as */*
+  Rendering layout layouts/application.html.erb
+  Rendering password_resets/show_error.html.erb within layouts/application
+  Rendered password_resets/show_error.html.erb within layouts/application (Duration: 0.2ms | Allocations: 112)
+  Rendered layout layouts/application.html.erb (Duration: 81.0ms | Allocations: 82276)
+Completed 200 OK in 83ms (Views: 82.2ms | ActiveRecord: 0.0ms | Allocations: 83746)
+
+
+Started PATCH "/password_resets/1" for ::1 at 2024-02-12 17:07:47 +0530
+Processing by PasswordResetsController#update as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = $1 LIMIT $2[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ (rdbg)//home/lenovo/Desktop/eCommerce_Application/app/controllers/password_resets_controller.rb:1:in `update'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = $1 LIMIT $2[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ (rdbg)//home/lenovo/Desktop/eCommerce_Application/app/controllers/password_resets_controller.rb:1:in `update'
+  [1m[36mCACHE User Load (5.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = $1 LIMIT $2[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:28:in `update'
