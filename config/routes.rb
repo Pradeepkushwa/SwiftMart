@@ -13,8 +13,25 @@ Rails.application.routes.draw do
   resources :password_resets do
    get :show_error, on: :collection
    get :edit_error, on: :collection
-    
   end
+
+    # resources :carts
+
+  post "/add_product/:id", to: "carts#add_product"
+
+  delete "/remove_product/:id", to: "carts#remove_product"
+
+  #  addresses
+
+  resources :addresses
+
+  resources :orders
+
+# stripe payment
+
+  post "/payments", to: "payments#create"
+   post "/payments/checkout", to: "payments#checkout"
+   get  "/payments/retrive_checkout", to: "payments#retrive_checkout"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
