@@ -5865,3 +5865,884 @@ Processing by Admin::OrdersController#index as HTML
 Completed 200 OK in 60ms (Views: 46.0ms | ActiveRecord: 6.2ms | Allocations: 66636)
 
 
+Started POST "/users" for ::1 at 2024-02-13 10:33:41 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"anurag", "last_name"=>"prajapati", "email"=>"anurag@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:25:in `create'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "anurag@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:25:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "anurag"], ["last_name", "prajapati"], ["email", "anurag@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-13 05:03:47.682595"], ["updated_at", "2024-02-13 05:03:47.682595"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:25:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/models/user.rb:34:in `create_cart'
+  [1m[36mCart Create (1.1ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-13 05:03:47.694426"], ["updated_at", "2024-02-13 05:03:47.694426"], ["user_id", 9]]
+  ↳ app/models/user.rb:34:in `create_cart'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:25:in `create'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (5.04ms)
+Completed 201 Created in 6606ms (Views: 5.6ms | ActiveRecord: 57.1ms | Allocations: 340382)
+
+
+Started POST "/auth/login" for ::1 at 2024-02-13 10:34:20 +0530
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"anurag@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "anurag@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `login'
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 4322ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 89032)
+
+
+Started GET "/users" for ::1 at 2024-02-13 10:34:55 +0530
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (4.19ms)
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.9ms | Allocations: 5371)
+
+
+Started GET "/users/3" for ::1 at 2024-02-13 10:35:07 +0530
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Filter chain halted as :set_user rendered or redirected
+Completed 404 Not Found in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 2426)
+
+
+Started GET "/users/1" for ::1 at 2024-02-13 10:35:13 +0530
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Filter chain halted as :set_user rendered or redirected
+Completed 404 Not Found in 3ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 1809)
+
+
+Started GET "/users/9" for ::1 at 2024-02-13 10:35:17 +0530
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (1.11ms)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 2514)
+
+
+Started GET "/users/8" for ::1 at 2024-02-13 10:35:22 +0530
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (1.67ms)
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.3ms | Allocations: 2507)
+
+
+Started GET "/users/9" for ::1 at 2024-02-13 10:35:31 +0530
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (1.62ms)
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 2490)
+
+
+Started PATCH "/users/3" for ::1 at 2024-02-13 10:35:59 +0530
+Processing by UsersController#update as */*
+  Parameters: {"first_name"=>"brajesh", "last_name"=>"kumar", "phone"=>"0987654321", "id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Filter chain halted as :set_user rendered or redirected
+Completed 404 Not Found in 2ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 1809)
+
+
+Started PATCH "/users/9" for ::1 at 2024-02-13 10:36:02 +0530
+Processing by UsersController#update as */*
+  Parameters: {"first_name"=>"brajesh", "last_name"=>"kumar", "phone"=>"0987654321", "id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[31mUnpermitted parameter: :id. Context: { controller: UsersController, action: update, request: #<ActionDispatch::Request:0x000055d920f411c8>, params: {"first_name"=>"brajesh", "last_name"=>"kumar", "phone"=>"0987654321", "controller"=>"users", "action"=>"update", "id"=>"9"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "anurag@gmail.com"], ["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `update'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "last_name" = $2, "phone" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["first_name", "brajesh"], ["last_name", "kumar"], ["phone", 987654321], ["updated_at", "2024-02-13 05:06:02.876736"], ["id", 9]]
+  ↳ app/controllers/users_controller.rb:35:in `update'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:35:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 3.9ms | Allocations: 4682)
+
+
+Started GET "/users" for ::1 at 2024-02-13 10:36:08 +0530
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (5.43ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.8ms | Allocations: 5313)
+
+
+Started DELETE "/users/6" for ::1 at 2024-02-13 10:36:20 +0530
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1441)
+
+
+Started GET "/products" for ::1 at 2024-02-13 10:36:29 +0530
+Processing by ProductsController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:8:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:8:in `image'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (49.36ms)
+Completed 200 OK in 65ms (Views: 56.9ms | ActiveRecord: 5.6ms | Allocations: 212014)
+
+
+Started GET "/products/1" for ::1 at 2024-02-13 10:36:35 +0530
+Processing by ProductsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:11:in `show'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers] Rendered ProductSerializer with ActiveModelSerializers::Adapter::Json (1.21ms)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.6ms | Allocations: 3140)
+
+
+Started PATCH "/passwords/5" for ::1 at 2024-02-13 10:36:45 +0530
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"5", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/passwords_controller.rb:8:in `update'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "anurag@gmail.com"], ["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/passwords_controller.rb:8:in `update'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "password_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["password_digest", "[FILTERED]"], ["updated_at", "2024-02-13 05:06:50.089896"], ["id", 9]]
+  ↳ app/controllers/passwords_controller.rb:8:in `update'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/passwords_controller.rb:8:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 4408ms (Views: 0.3ms | ActiveRecord: 6.2ms | Allocations: 88866)
+
+
+Started POST "/auth/login" for ::1 at 2024-02-13 10:37:11 +0530
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"anurag@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "anurag@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 401 Unauthorized in 3220ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 82748)
+
+
+Started POST "/auth/login" for ::1 at 2024-02-13 10:37:36 +0530
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"anurag@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "anurag@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 3560ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 82353)
+
+
+Started PATCH "/passwords/5" for ::1 at 2024-02-13 10:39:05 +0530
+  
+SyntaxError (/home/lenovo/Desktop/eCommerce_Application/app/controllers/passwords_controller.rb:17: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/passwords_controller.rb:17: syntax error, unexpected end-of-input, expecting `end'
+Started PATCH "/passwords/5" for ::1 at 2024-02-13 10:39:56 +0530
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"5", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+No template found for PasswordsController#update, rendering head :no_content
+Completed 204 No Content in 4760ms (ActiveRecord: 1.6ms | Allocations: 92176)
+
+
+Started PATCH "/passwords/5" for ::1 at 2024-02-13 10:43:01 +0530
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"5", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 4746ms (Views: 2.0ms | ActiveRecord: 1.6ms | Allocations: 94916)
+
+
+Started PATCH "/passwords/5" for ::1 at 2024-02-13 10:43:32 +0530
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"5", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 5652ms (Views: 0.8ms | ActiveRecord: 0.1ms | Allocations: 82457)
+
+
+Started PATCH "/passwords/9" for ::1 at 2024-02-13 10:43:47 +0530
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"9", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 4092ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 82339)
+
+
+Started PATCH "/passwords/9" for ::1 at 2024-02-13 10:45:08 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PasswordsController#update as */*
+  Parameters: {"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]", "id"=>"9", "password"=>{"current_password"=>"[FILTERED]", "new_password"=>"[FILTERED]"}}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 4183ms (Views: 3.4ms | ActiveRecord: 4.9ms | Allocations: 304475)
+
+
+Started PATCH "/password_resets/1" for ::1 at 2024-02-13 10:46:06 +0530
+Processing by PasswordResetsController#update as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = $1 LIMIT $2[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:28:in `update'
+Redirected to http://localhost:3000/password_resets/show_error
+Completed 302 Found in 8ms (ActiveRecord: 1.7ms | Allocations: 1916)
+
+
+Started GET "/password_resets/show_error" for ::1 at 2024-02-13 10:46:06 +0530
+Processing by PasswordResetsController#show_error as */*
+  Rendering layout layouts/application.html.erb
+  Rendering password_resets/show_error.html.erb within layouts/application
+  Rendered password_resets/show_error.html.erb within layouts/application (Duration: 0.3ms | Allocations: 175)
+  Rendered layout layouts/application.html.erb (Duration: 58.1ms | Allocations: 64896)
+Completed 200 OK in 65ms (Views: 61.5ms | ActiveRecord: 0.0ms | Allocations: 68975)
+
+
+Started PATCH "/password_resets/9" for ::1 at 2024-02-13 10:46:13 +0530
+Processing by PasswordResetsController#update as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = $1 LIMIT $2[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:28:in `update'
+Redirected to http://localhost:3000/password_resets/show_error
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 944)
+
+
+Started GET "/password_resets/show_error" for ::1 at 2024-02-13 10:46:13 +0530
+Processing by PasswordResetsController#show_error as */*
+  Rendering layout layouts/application.html.erb
+  Rendering password_resets/show_error.html.erb within layouts/application
+  Rendered password_resets/show_error.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 3336)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 3636)
+
+
+Started POST "/add_product/1" for ::1 at 2024-02-13 10:46:33 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"1"}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.4ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:5:in `add_product'
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:6:in `add_product'
+  [1m[36mProduct Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 4], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mCart::HABTM_Products Create (0.5ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 4], ["product_id", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 5552ms (Views: 0.6ms | ActiveRecord: 14.3ms | Allocations: 207798)
+
+
+Started POST "/add_product/1" for ::1 at 2024-02-13 10:46:43 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 9], ["LIMIT", 1]]
+  ↳ (rdbg)//home/lenovo/Desktop/eCommerce_Application/app/controllers/carts_controller.rb:1:in `add_product'
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 /* loading for pp */ LIMIT $2[0m  [["cart_id", 4], ["LIMIT", 11]]
+  ↳ app/controllers/carts_controller.rb:4:in `add_product'
+  [1m[36mProduct Load (6.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:6:in `add_product'
+  [1m[36mProduct Exists? (7.0ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 4], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 71036ms (Views: 0.9ms | ActiveRecord: 12.5ms | Allocations: 955071)
+
+
+Started POST "/add_product/2" for ::1 at 2024-02-13 10:48:03 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:5:in `add_product'
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:6:in `add_product'
+  [1m[36mProduct Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 4], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mCart::HABTM_Products Create (2.9ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 4], ["product_id", 2]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 2427ms (Views: 0.7ms | ActiveRecord: 9.7ms | Allocations: 87412)
+
+
+Started DELETE "/remove_product/2" for ::1 at 2024-02-13 10:48:13 +0530
+Processing by CartsController#remove_product as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:23:in `remove_product'
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:28:in `remove_product'
+  [1m[36mProduct Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 4], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:32:in `remove_product'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:33:in `remove_product'
+  [1m[36mCart::HABTM_Products Delete All (2.8ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."cart_id" = $1 AND "carts_products"."product_id" = $2[0m  [["cart_id", 4], ["product_id", 2]]
+  ↳ app/controllers/carts_controller.rb:33:in `remove_product'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:33:in `remove_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 5223ms (Views: 0.6ms | ActiveRecord: 6.2ms | Allocations: 86762)
+
+
+Started DELETE "/remove_product/2" for ::1 at 2024-02-13 10:48:22 +0530
+Processing by CartsController#remove_product as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:23:in `remove_product'
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:28:in `remove_product'
+  [1m[36mProduct Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 4], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:32:in `remove_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 2199ms (Views: 0.8ms | ActiveRecord: 1.5ms | Allocations: 84958)
+
+
+Started GET "/addresses" for ::1 at 2024-02-13 10:48:36 +0530
+Processing by AddressesController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (1.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1[0m  [["user_id", 9]]
+  ↳ app/controllers/addresses_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.99ms)
+Completed 200 OK in 17ms (Views: 6.3ms | ActiveRecord: 5.0ms | Allocations: 5802)
+
+
+Started POST "/addresses" for ::1 at 2024-02-13 10:49:13 +0530
+Processing by AddressesController#create as */*
+  Parameters: {"street_address"=>"vijay nagar", "city"=>"indore", "state"=>"madhya pradesh", "zip_code"=>"472338"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mAddress Create (28.6ms)[0m  [1m[32mINSERT INTO "addresses" ("street_address", "city", "state", "zip_code", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["street_address", "vijay nagar"], ["city", "indore"], ["state", "madhya pradesh"], ["zip_code", 472338], ["created_at", "2024-02-13 05:19:13.363298"], ["updated_at", "2024-02-13 05:19:13.363298"], ["user_id", 9]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+[active_model_serializers] Rendered AddressSerializer with ActiveModelSerializers::Adapter::Json (0.42ms)
+Completed 200 OK in 46ms (Views: 1.2ms | ActiveRecord: 30.8ms | Allocations: 57459)
+
+
+Started GET "/addresses" for ::1 at 2024-02-13 10:49:20 +0530
+Processing by AddressesController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1[0m  [["user_id", 9]]
+  ↳ app/controllers/addresses_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.22ms)
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1843)
+
+
+Started GET "/addresses/2" for ::1 at 2024-02-13 10:49:28 +0530
+Processing by AddressesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1 AND "addresses"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:13:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1681)
+
+
+Started GET "/addresses/5" for ::1 at 2024-02-13 10:49:31 +0530
+Processing by AddressesController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1 AND "addresses"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:13:in `show'
+[active_model_serializers] Rendered AddressSerializer with ActiveModelSerializers::Adapter::Json (0.17ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 1773)
+
+
+Started PATCH "/addresses/2" for ::1 at 2024-02-13 10:50:09 +0530
+Processing by AddressesController#update as */*
+  Parameters: {"street_address"=>"anand nagar", "city"=>"bihar", "state"=>"west bengal", "zip_code"=>"472338", "id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:35:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: AddressesController, action: update, request: #<ActionDispatch::Request:0x00007f541c72a138>, params: {"street_address"=>"anand nagar", "city"=>"bihar", "state"=>"west bengal", "zip_code"=>"472338", "controller"=>"addresses", "action"=>"update", "id"=>"2"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/addresses_controller.rb:36:in `update'
+  [1m[36mAddress Update (0.7ms)[0m  [1m[33mUPDATE "addresses" SET "street_address" = $1, "city" = $2, "state" = $3, "updated_at" = $4 WHERE "addresses"."id" = $5[0m  [["street_address", "anand nagar"], ["city", "bihar"], ["state", "west bengal"], ["updated_at", "2024-02-13 05:20:09.296387"], ["id", 2]]
+  ↳ app/controllers/addresses_controller.rb:36:in `update'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/addresses_controller.rb:36:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 4.7ms | Allocations: 4211)
+
+
+Started GET "/addresses" for ::1 at 2024-02-13 10:50:17 +0530
+Processing by AddressesController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1[0m  [["user_id", 9]]
+  ↳ app/controllers/addresses_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.24ms)
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 1818)
+
+
+Started GET "/addresses" for ::1 at 2024-02-13 10:50:21 +0530
+Processing by AddressesController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1[0m  [["user_id", 9]]
+  ↳ app/controllers/addresses_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.21ms)
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 1818)
+
+
+Started GET "/addresses/5" for ::1 at 2024-02-13 10:50:28 +0530
+Processing by AddressesController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1 AND "addresses"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:13:in `show'
+[active_model_serializers] Rendered AddressSerializer with ActiveModelSerializers::Adapter::Json (0.14ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1759)
+
+
+Started PATCH "/addresses/2" for ::1 at 2024-02-13 10:50:34 +0530
+Processing by AddressesController#update as */*
+  Parameters: {"street_address"=>"anand nagar", "city"=>"bihar", "state"=>"west bengal", "zip_code"=>"472338", "id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:35:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: AddressesController, action: update, request: #<ActionDispatch::Request:0x00007f541c602be8>, params: {"street_address"=>"anand nagar", "city"=>"bihar", "state"=>"west bengal", "zip_code"=>"472338", "controller"=>"addresses", "action"=>"update", "id"=>"2"} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 1741)
+
+
+Started PATCH "/addresses/5" for ::1 at 2024-02-13 10:51:12 +0530
+Processing by AddressesController#update as */*
+  Parameters: {"street_address"=>"anand nagar", "city"=>"bihar", "state"=>"west bengal", "zip_code"=>"472338", "id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:35:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: AddressesController, action: update, request: #<ActionDispatch::Request:0x00007f541c58ab20>, params: {"street_address"=>"anand nagar", "city"=>"bihar", "state"=>"west bengal", "zip_code"=>"472338", "controller"=>"addresses", "action"=>"update", "id"=>"5"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/addresses_controller.rb:36:in `update'
+  [1m[36mAddress Update (0.7ms)[0m  [1m[33mUPDATE "addresses" SET "street_address" = $1, "city" = $2, "state" = $3, "updated_at" = $4 WHERE "addresses"."id" = $5[0m  [["street_address", "anand nagar"], ["city", "bihar"], ["state", "west bengal"], ["updated_at", "2024-02-13 05:21:12.439504"], ["id", 5]]
+  ↳ app/controllers/addresses_controller.rb:36:in `update'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/addresses_controller.rb:36:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 2.3ms | Allocations: 3467)
+
+
+Started GET "/addresses" for ::1 at 2024-02-13 10:51:21 +0530
+Processing by AddressesController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1[0m  [["user_id", 9]]
+  ↳ app/controllers/addresses_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.18ms)
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 1818)
+
+
+Started GET "/orders" for ::1 at 2024-02-13 10:51:57 +0530
+Processing by OrdersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (1.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.28ms)
+Completed 200 OK in 28ms (Views: 19.5ms | ActiveRecord: 4.0ms | Allocations: 103955)
+
+
+Started GET "/orders/1" for ::1 at 2024-02-13 10:52:05 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 2233)
+
+
+Started GET "/orders/8" for ::1 at 2024-02-13 10:52:08 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 1647)
+
+
+Started GET "/orders/8" for ::1 at 2024-02-13 10:52:13 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1647)
+
+
+Started GET "/orders" for ::1 at 2024-02-13 10:52:36 +0530
+Processing by OrdersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.21ms)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.4ms | Allocations: 1704)
+
+
+Started GET "/orders/1" for ::1 at 2024-02-13 10:52:46 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1647)
+
+
+Started GET "/orders/2" for ::1 at 2024-02-13 10:52:48 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1647)
+
+
+Started GET "/orders" for ::1 at 2024-02-13 10:53:13 +0530
+Processing by OrdersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.22ms)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.3ms | Allocations: 1704)
+
+
+Started GET "/orders/2" for ::1 at 2024-02-13 10:53:20 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1647)
+
+
+Started GET "/orders/3" for ::1 at 2024-02-13 10:53:23 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1647)
+
+
+Started GET "/orders/34" for ::1 at 2024-02-13 10:53:24 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"34"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 34], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1647)
+
+
+Started GET "/orders" for ::1 at 2024-02-13 10:53:27 +0530
+Processing by OrdersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.23ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 1704)
+
+
+Started GET "/orders/1" for ::1 at 2024-02-13 10:53:30 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1647)
+
+
+Started POST "/orders" for ::1 at 2024-02-13 10:53:37 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"payment_method"=>"card", "address_id"=>1, "order"=>{"payment_method"=>"card", "address_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.3ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:24:in `create'
+  [1m[36mProduct Sum (0.8ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:79:in `calculate_total_mrp'
+  [1m[36mProduct Sum (0.4ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:87:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:79:in `calculate_total_mrp'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:87:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:87:in `calculate_total_price'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder Create (0.9ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "order_number", "total_mrp", "total_price", "discount", "tax", "payment_method", "created_at", "updated_at", "address_id", "status") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", 9], ["order_number", 147421], ["total_mrp", "15999.0"], ["total_price", "1999.0"], ["discount", "14000.0"], ["tax", "99.95"], ["payment_method", "card"], ["created_at", "2024-02-13 05:23:37.824437"], ["updated_at", "2024-02-13 05:23:37.824437"], ["address_id", 1], ["status", 0]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:37:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:37:in `create'
+  [1m[36mOrder::HABTM_Products Create (1.2ms)[0m  [1m[32mINSERT INTO "orders_products" ("product_id", "order_id") VALUES ($1, $2)[0m  [["product_id", 1], ["order_id", 2]]
+  ↳ app/controllers/orders_controller.rb:37:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:37:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mHABTM_Products Load (0.1ms)[0m  [1m[34mSELECT "carts_products".* FROM "carts_products" WHERE "carts_products"."cart_id" = $1 AND "carts_products"."product_id" = $2[0m  [["cart_id", 4], ["product_id", 1]]
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mCart::HABTM_Products Delete All (0.1ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."cart_id" = $1 AND "carts_products"."product_id" = $2[0m  [["cart_id", 4], ["product_id", 1]]
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 200 OK in 68ms (Views: 0.5ms | ActiveRecord: 11.4ms | Allocations: 32581)
+
+
+Started POST "/orders" for ::1 at 2024-02-13 10:53:56 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"payment_method"=>"card", "address_id"=>5, "order"=>{"payment_method"=>"card", "address_id"=>5}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:24:in `create'
+  [1m[36mProduct Sum (0.2ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:79:in `calculate_total_mrp'
+  [1m[36mProduct Sum (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:87:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:79:in `calculate_total_mrp'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:87:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:87:in `calculate_total_price'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "order_number", "total_mrp", "total_price", "discount", "tax", "payment_method", "created_at", "updated_at", "address_id", "status") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", 9], ["order_number", 390117], ["total_mrp", "0.0"], ["total_price", "0.0"], ["discount", "0.0"], ["tax", "0.0"], ["payment_method", "card"], ["created_at", "2024-02-13 05:23:56.161886"], ["updated_at", "2024-02-13 05:23:56.161886"], ["address_id", 5], ["status", 0]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 4]]
+  ↳ app/controllers/orders_controller.rb:37:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 200 OK in 14ms (Views: 0.4ms | ActiveRecord: 5.1ms | Allocations: 8994)
+
+
+Started GET "/orders" for ::1 at 2024-02-13 10:54:00 +0530
+Processing by OrdersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.34ms)
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 1946)
+
+
+Started GET "/orders/1" for ::1 at 2024-02-13 10:54:10 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 1647)
+
+
+Started GET "/orders/2" for ::1 at 2024-02-13 10:54:13 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered OrderSerializer with ActiveModelSerializers::Adapter::Json (0.2ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 1847)
+
+
+Started GET "/orders/3" for ::1 at 2024-02-13 10:54:18 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered OrderSerializer with ActiveModelSerializers::Adapter::Json (0.31ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1789)
+
+
+Started GET "/orders/2" for ::1 at 2024-02-13 10:54:29 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 9], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered OrderSerializer with ActiveModelSerializers::Adapter::Json (0.3ms)
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1789)
+
+
+Started POST "/payments/checkout" for ::1 at 2024-02-13 10:54:43 +0530
+  
+ActionController::RoutingError (uninitialized constant PaymentsController
+Did you mean?  PaymentSerializer):
+  
+Started GET "/admin" for ::1 at 2024-02-13 11:11:01 +0530
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms | Allocations: 4023)
+
+
+Started GET "/admin/login" for ::1 at 2024-02-13 11:11:01 +0530
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/shared/_links.erb (Duration: 0.7ms | Allocations: 802)
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (Duration: 9.9ms | Allocations: 10636)
+  Rendered layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb (Duration: 18.2ms | Allocations: 24709)
+Completed 200 OK in 38ms (Views: 20.2ms | ActiveRecord: 4.7ms | Allocations: 58029)
+
+
+Started POST "/admin/login" for ::1 at 2024-02-13 11:11:04 +0530
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.8ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/admin
+Completed 303 See Other in 195ms (ActiveRecord: 0.8ms | Allocations: 4104)
+
+
+Started GET "/admin" for ::1 at 2024-02-13 11:11:05 +0530
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb (Duration: 11.7ms | Allocations: 18655)
+Completed 200 OK in 20ms (Views: 13.6ms | ActiveRecord: 0.1ms | Allocations: 21584)
+
+
