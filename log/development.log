@@ -6744,5 +6744,696 @@ Processing by Admin::DashboardController#index as HTML
   Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb
   Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb (Duration: 11.7ms | Allocations: 18655)
 Completed 200 OK in 20ms (Views: 13.6ms | ActiveRecord: 0.1ms | Allocations: 21584)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8028510135882274500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreatePayments (20240212174341)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "payments" ("id" bigserial primary key, "payment_intent_id" character varying, "payment_status" character varying, "checkout_session_id" character varying, "user_id" bigint, "order_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240212174341') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8028510135882274500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/orders/2" for ::1 at 2024-02-12 23:31:09 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2"}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 8], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 401 Unauthorized in 62ms (Views: 1.3ms | ActiveRecord: 8.2ms | Allocations: 165256)
+
+
+Started GET "/orders/1" for ::1 at 2024-02-12 23:31:12 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1 AND "orders"."id" = $2 LIMIT $3[0m  [["user_id", 8], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:14:in `show'
+[active_model_serializers] Rendered OrderSerializer with ActiveModelSerializers::Adapter::Json (0.4ms)
+Completed 200 OK in 25ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 117074)
+
+
+Started POST "/payments/checkout" for ::1 at 2024-02-12 23:33:37 +0530
+Processing by PaymentsController#checkout as */*
+  Parameters: {"order_id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:5:in `checkout'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.3ms | Allocations: 2265)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Order with 'id'=4):
+  
+app/controllers/payments_controller.rb:5:in `checkout'
+Started POST "/payments/checkout" for ::1 at 2024-02-12 23:34:25 +0530
+Processing by PaymentsController#checkout as */*
+  Parameters: {"order_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:5:in `checkout'
+  [1m[36mProduct Pluck (0.2ms)[0m  [1m[34mSELECT "products"."title" FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 1]]
+  ↳ app/controllers/payments_controller.rb:13:in `checkout'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 2.7ms | Allocations: 11621)
+
+
+  
+NoMethodError (undefined method `stripe_id' for #<User id: 8, first_name: "first", last_name: "last", email: "first@gmail.com", phone: 1234567890, password_digest: [FILTERED], created_at: "2024-02-12 13:50:57.755400000 +0000", updated_at: "2024-02-12 13:50:57.755400000 +0000", reset_password_token: nil, reset_password_sent_at: nil, reset_password_used: nil>):
+  
+app/controllers/payments_controller.rb:19:in `checkout'
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/payments/checkout" for ::1 at 2024-02-12 23:37:49 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 1 pending migration:
+
+db/migrate/20240212180608_add_stripe_id_to_users.rb
+
+
+):
+  
+activerecord (7.1.2) lib/active_record/migration.rb:754:in `check_pending_migrations'
+activerecord (7.1.2) lib/active_record/migration.rb:643:in `block (2 levels) in call'
+activesupport (7.1.2) lib/active_support/file_update_checker.rb:85:in `execute'
+activesupport (7.1.2) lib/active_support/file_update_checker.rb:95:in `execute_if_updated'
+activerecord (7.1.2) lib/active_record/migration.rb:650:in `block in call'
+activerecord (7.1.2) lib/active_record/migration.rb:640:in `synchronize'
+activerecord (7.1.2) lib/active_record/migration.rb:640:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.9) lib/rack/method_override.rb:28:in `call'
+rack (3.0.9) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.9) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.2) lib/rails/engine.rb:529:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8028510135882274500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddStripeIdToUsers (20240212180608)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "users" ADD "stripe_id" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240212180608') RETURNING "version"[0m
+  [1m[36mTRANSACTION (27.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8028510135882274500)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/payments/checkout" for ::1 at 2024-02-12 23:38:10 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PaymentsController#checkout as */*
+  Parameters: {"order_id"=>"1"}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:5:in `checkout'
+  [1m[36mProduct Pluck (0.3ms)[0m  [1m[34mSELECT "products"."title" FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 1]]
+  ↳ app/controllers/payments_controller.rb:13:in `checkout'
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 7.1ms | Allocations: 29424)
+
+
+  
+Stripe::AuthenticationError (No API key provided. Set your API key using "Stripe.api_key = <API-KEY>". You can generate API keys from the Stripe web interface. See https://stripe.com/api for details, or email support@stripe.com if you have any questions.):
+  
+app/controllers/payments_controller.rb:6:in `checkout'
+Started POST "/payments/checkout" for ::1 at 2024-02-12 23:38:51 +0530
+Processing by PaymentsController#checkout as */*
+  Parameters: {"order_id"=>"1"}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:5:in `checkout'
+  [1m[36mProduct Pluck (0.2ms)[0m  [1m[34mSELECT "products"."title" FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 1]]
+  ↳ app/controllers/payments_controller.rb:13:in `checkout'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 6.1ms | Allocations: 15533)
+
+
+  
+Stripe::AuthenticationError (No API key provided. Set your API key using "Stripe.api_key = <API-KEY>". You can generate API keys from the Stripe web interface. See https://stripe.com/api for details, or email support@stripe.com if you have any questions.):
+  
+app/controllers/payments_controller.rb:6:in `checkout'
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/payments/checkout" for ::1 at 2024-02-12 23:39:40 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PaymentsController#checkout as */*
+  Parameters: {"order_id"=>"1"}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:5:in `checkout'
+  [1m[36mProduct Pluck (0.3ms)[0m  [1m[34mSELECT "products"."title" FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 1]]
+  ↳ app/controllers/payments_controller.rb:13:in `checkout'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mPayment Create (0.4ms)[0m  [1m[32mINSERT INTO "payments" ("payment_intent_id", "payment_status", "checkout_session_id", "user_id", "order_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["payment_intent_id", nil], ["payment_status", "inprogress"], ["checkout_session_id", "cs_test_a1pnnENx6VxnwQP5GY6RLBqcDvrlg1XxVY1kg2XKBEM47HOUi8hVol9jpG"], ["user_id", 8], ["order_id", 1], ["created_at", "2024-02-12 18:09:43.486616"], ["updated_at", "2024-02-12 18:09:43.486616"]]
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Stripe::Checkout::Session (0.09ms)
+Completed 200 OK in 2499ms (Views: 1.7ms | ActiveRecord: 18.4ms | Allocations: 362878)
+
+
+Started GET "//payments/retrive_checkout?checkout_session_id=cs_test_a1pnnENx6VxnwQP5GY6RLBqcDvrlg1XxVY1kg2XKBEM47HOUi8hVol9jpG" for ::1 at 2024-02-12 23:43:25 +0530
+Processing by PaymentsController#retrive_checkout as */*
+  Parameters: {"checkout_session_id"=>"cs_test_a1pnnENx6VxnwQP5GY6RLBqcDvrlg1XxVY1kg2XKBEM47HOUi8hVol9jpG"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mPayment Load (0.5ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."user_id" = $1 ORDER BY "payments"."id" DESC LIMIT $2[0m  [["user_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+  [1m[36mPayment Update (1.9ms)[0m  [1m[33mUPDATE "payments" SET "payment_intent_id" = $1, "payment_status" = $2, "updated_at" = $3 WHERE "payments"."id" = $4[0m  [["payment_intent_id", "pi_3Oj3zQSI1Y7AHsQa0Buy3VLT"], ["payment_status", "paid"], ["updated_at", "2024-02-12 18:13:28.936385"], ["id", 1]]
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+  [1m[36mTRANSACTION (28.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 200 OK in 3398ms (Views: 1.3ms | ActiveRecord: 30.9ms | Allocations: 9158)
+
+
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/admin/orders" for ::1 at 2024-02-12 23:49:21 +0530
+Processing by Admin::OrdersController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses"[0m
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."name" = $1[0m  [["name", "image"]]
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 169.8ms | Allocations: 323517)
+Completed 200 OK in 200ms (Views: 167.7ms | ActiveRecord: 12.6ms | Allocations: 368230)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:49:25 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.6ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 112.4ms | Allocations: 49534)
+Completed 200 OK in 121ms (Views: 111.8ms | ActiveRecord: 1.8ms | Allocations: 52487)
+
+
+Started GET "/admin/logout" for ::1 at 2024-02-12 23:49:33 +0530
+Processing by ActiveAdmin::Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/admin
+Completed 303 See Other in 4ms (ActiveRecord: 0.2ms | Allocations: 2817)
+
+
+Started GET "/admin" for ::1 at 2024-02-12 23:49:33 +0530
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 609)
+
+
+Started GET "/admin/login" for ::1 at 2024-02-12 23:49:33 +0530
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/shared/_links.erb (Duration: 1.0ms | Allocations: 790)
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (Duration: 9.1ms | Allocations: 9719)
+  Rendered layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb (Duration: 17.3ms | Allocations: 23400)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.0ms | Allocations: 25239)
+
+
+Started POST "/admin/login" for ::1 at 2024-02-12 23:49:34 +0530
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/admin
+Completed 303 See Other in 197ms (ActiveRecord: 0.3ms | Allocations: 4220)
+
+
+Started GET "/admin" for ::1 at 2024-02-12 23:49:35 +0530
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb (Duration: 11.7ms | Allocations: 17482)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.2ms | Allocations: 19773)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:50:22 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.3ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 32.5ms | Allocations: 40198)
+Completed 200 OK in 38ms (Views: 32.0ms | ActiveRecord: 1.4ms | Allocations: 42245)
+
+
+Started GET "/admin/payments/1/edit" for ::1 at 2024-02-12 23:50:32 +0530
+Processing by Admin::PaymentsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPayment Load (0.2ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/edit.html.arb
+  [1m[36mCACHE Payment Load (0.0ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/edit.html.arb (Duration: 26.4ms | Allocations: 31911)
+Completed 200 OK in 33ms (Views: 25.7ms | ActiveRecord: 1.8ms | Allocations: 35475)
+
+
+Started PATCH "/admin/payments/1" for ::1 at 2024-02-12 23:50:42 +0530
+Processing by Admin::PaymentsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "payment"=>{"user_id"=>"8", "order_id"=>"1", "payment_status"=>"unpaid"}, "commit"=>"Update Payment", "id"=>"1"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPayment Load (0.3ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.4ms | Allocations: 2990)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+activemodel (7.1.2) lib/active_model/forbidden_attributes_protection.rb:25:in `sanitize_for_mass_assignment'
+activemodel (7.1.2) lib/active_model/attribute_assignment.rb:34:in `assign_attributes'
+activeadmin (3.2.0) lib/active_admin/resource_controller/data_access.rb:301:in `assign_attributes'
+activeadmin (3.2.0) lib/active_admin/resource_controller/data_access.rb:171:in `update_resource'
+inherited_resources (1.14.0) lib/inherited_resources/actions.rb:45:in `update'
+actionpack (7.1.2) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (7.1.2) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.2) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.2) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.1.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.0.9) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.9) lib/rack/etag.rb:29:in `call'
+rack (3.0.9) lib/rack/conditional_get.rb:43:in `call'
+rack (3.0.9) lib/rack/head.rb:15:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.2) lib/active_record/migration.rb:654:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.9) lib/rack/method_override.rb:28:in `call'
+rack (3.0.9) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.9) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.2) lib/rails/engine.rb:529:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started PATCH "/admin/payments/1" for ::1 at 2024-02-12 23:51:04 +0530
+Processing by Admin::PaymentsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "payment"=>{"user_id"=>"8", "order_id"=>"1", "payment_status"=>"unpaid"}, "commit"=>"Update Payment", "id"=>"1"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPayment Load (0.1ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPayment Update (1.2ms)[0m  [1m[33mUPDATE "payments" SET "payment_status" = $1, "updated_at" = $2 WHERE "payments"."id" = $3[0m  [["payment_status", "unpaid"], ["updated_at", "2024-02-12 18:21:04.802167"], ["id", 1]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/admin/payments/1
+Completed 302 Found in 24ms (ActiveRecord: 6.3ms | Allocations: 20240)
+
+
+Started GET "/admin/payments/1" for ::1 at 2024-02-12 23:51:04 +0530
+Processing by Admin::PaymentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPayment Load (0.4ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveAdmin::Comment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "Payment"], ["resource_id", 1], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "Payment"], ["resource_id", 1], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb (Duration: 56.9ms | Allocations: 128068)
+Completed 200 OK in 64ms (Views: 52.5ms | ActiveRecord: 6.1ms | Allocations: 131284)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:51:09 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.5ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 34.8ms | Allocations: 42942)
+Completed 200 OK in 43ms (Views: 34.1ms | ActiveRecord: 1.9ms | Allocations: 45677)
+
+
+Started GET "/admin/orders/1" for ::1 at 2024-02-12 23:51:13 +0530
+Processing by Admin::OrdersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveAdmin::Comment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "Order"], ["resource_id", 1], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "Order"], ["resource_id", 1], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb (Duration: 30.2ms | Allocations: 40016)
+Completed 200 OK in 37ms (Views: 27.2ms | ActiveRecord: 4.1ms | Allocations: 43490)
+
+
+Started GET "/admin/users/8" for ::1 at 2024-02-12 23:51:19 +0530
+Processing by Admin::UsersController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb (Duration: 12.6ms | Allocations: 19337)
+Completed 200 OK in 21ms (Views: 13.5ms | ActiveRecord: 0.6ms | Allocations: 22805)
+
+
+Started GET "/admin/payments/1" for ::1 at 2024-02-12 23:51:27 +0530
+Processing by Admin::PaymentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPayment Load (0.2ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveAdmin::Comment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "Payment"], ["resource_id", 1], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "Payment"], ["resource_id", 1], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/show.html.arb (Duration: 23.5ms | Allocations: 31256)
+Completed 200 OK in 30ms (Views: 23.1ms | ActiveRecord: 1.2ms | Allocations: 33987)
+
+
+Started DELETE "/admin/payments/1" for ::1 at 2024-02-12 23:51:34 +0530
+Processing by Admin::PaymentsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPayment Load (0.3ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPayment Destroy (1.2ms)[0m  [1m[31mDELETE FROM "payments" WHERE "payments"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/admin/payments
+Completed 302 Found in 13ms (ActiveRecord: 5.6ms | Allocations: 6822)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:51:34 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.3ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 21.3ms | Allocations: 31377)
+Completed 200 OK in 24ms (Views: 20.9ms | ActiveRecord: 0.8ms | Allocations: 33434)
+
+
+Started POST "/payments/checkout" for ::1 at 2024-02-12 23:51:42 +0530
+Processing by PaymentsController#checkout as */*
+  Parameters: {"order_id"=>"1"}
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:5:in `checkout'
+  [1m[36mProduct Pluck (0.2ms)[0m  [1m[34mSELECT "products"."title" FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 1]]
+  ↳ app/controllers/payments_controller.rb:13:in `checkout'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mPayment Create (0.6ms)[0m  [1m[32mINSERT INTO "payments" ("payment_intent_id", "payment_status", "checkout_session_id", "user_id", "order_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["payment_intent_id", nil], ["payment_status", "inprogress"], ["checkout_session_id", "cs_test_a19jW5La7elZPSnE0mKq9j7SAp9DqkfzmZUEg9X4fct1fgrTcA4RRSQszj"], ["user_id", 8], ["order_id", 1], ["created_at", "2024-02-12 18:21:48.336279"], ["updated_at", "2024-02-12 18:21:48.336279"]]
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/payments_controller.rb:31:in `checkout'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Stripe::Checkout::Session (0.12ms)
+Completed 200 OK in 6056ms (Views: 2.3ms | ActiveRecord: 7.3ms | Allocations: 15081)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:53:31 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.4ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 29.7ms | Allocations: 40175)
+Completed 200 OK in 34ms (Views: 29.4ms | ActiveRecord: 1.3ms | Allocations: 42241)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:54:20 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.4ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 29.0ms | Allocations: 40175)
+Completed 200 OK in 35ms (Views: 28.5ms | ActiveRecord: 1.2ms | Allocations: 42208)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:54:22 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.3ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 32.7ms | Allocations: 40177)
+Completed 200 OK in 39ms (Views: 32.0ms | ActiveRecord: 1.5ms | Allocations: 42206)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:54:23 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.4ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 31.0ms | Allocations: 40591)
+Completed 200 OK in 46ms (Views: 30.2ms | ActiveRecord: 1.3ms | Allocations: 42634)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:54:23 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.3ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 31.1ms | Allocations: 40173)
+Completed 200 OK in 35ms (Views: 30.2ms | ActiveRecord: 1.4ms | Allocations: 42217)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:54:23 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.4ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 30.6ms | Allocations: 40563)
+Completed 200 OK in 36ms (Views: 29.9ms | ActiveRecord: 1.7ms | Allocations: 42606)
+
+
+Started GET "//payments/retrive_checkout?checkout_session_id=cs_test_a19jW5La7elZPSnE0mKq9j7SAp9DqkfzmZUEg9X4fct1fgrTcA4RRSQszj" for ::1 at 2024-02-12 23:54:50 +0530
+Processing by PaymentsController#retrive_checkout as */*
+  Parameters: {"checkout_session_id"=>"cs_test_a19jW5La7elZPSnE0mKq9j7SAp9DqkfzmZUEg9X4fct1fgrTcA4RRSQszj"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mPayment Load (0.5ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."user_id" = $1 ORDER BY "payments"."id" DESC LIMIT $2[0m  [["user_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+  [1m[36mPayment Update (1.9ms)[0m  [1m[33mUPDATE "payments" SET "payment_intent_id" = $1, "payment_status" = $2, "updated_at" = $3 WHERE "payments"."id" = $4[0m  [["payment_intent_id", "pi_3Oj4AlSI1Y7AHsQa154NzgbI"], ["payment_status", "paid"], ["updated_at", "2024-02-12 18:24:51.838065"], ["id", 2]]
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/payments_controller.rb:37:in `retrive_checkout'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1524ms (Views: 0.8ms | ActiveRecord: 7.0ms | Allocations: 8848)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-12 23:54:56 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.3ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 34.7ms | Allocations: 40180)
+Completed 200 OK in 41ms (Views: 33.9ms | ActiveRecord: 1.5ms | Allocations: 42213)
+
+
+Started GET "/admin/logout" for ::1 at 2024-02-12 23:58:05 +0530
+Processing by ActiveAdmin::Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/admin
+Completed 303 See Other in 5ms (ActiveRecord: 0.2ms | Allocations: 2083)
+
+
+Started GET "/admin" for ::1 at 2024-02-12 23:58:05 +0530
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 499)
+
+
+Started GET "/admin/login" for ::1 at 2024-02-12 23:58:05 +0530
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/shared/_links.erb (Duration: 0.9ms | Allocations: 754)
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (Duration: 4.6ms | Allocations: 6857)
+  Rendered layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb (Duration: 13.2ms | Allocations: 20130)
+Completed 200 OK in 16ms (Views: 14.9ms | ActiveRecord: 0.0ms | Allocations: 21530)
+
+
+Started POST "/admin/login" for ::1 at 2024-02-12 23:58:07 +0530
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/admin
+Completed 303 See Other in 200ms (ActiveRecord: 0.3ms | Allocations: 3087)
+
+
+Started GET "/admin" for ::1 at 2024-02-12 23:58:07 +0530
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb (Duration: 11.3ms | Allocations: 17368)
+Completed 200 OK in 14ms (Views: 12.3ms | ActiveRecord: 0.1ms | Allocations: 19638)
 
 

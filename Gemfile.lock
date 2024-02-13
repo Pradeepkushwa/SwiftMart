@@ -126,6 +126,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
+    dotenv (3.0.0)
+    dotenv-rails (3.0.0)
+      dotenv (= 3.0.0)
+      railties (>= 6.1)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -355,12 +359,17 @@ DEPENDENCIES
   actionmailer
   active_model_serializers
   activeadmin
+  bcrypt (~> 3.1.7)
   bootsnap
   capybara
   debug
   devise
+<<<<<<< HEAD
   factory_bot_rails
   faker
+=======
+  dotenv-rails
+>>>>>>> 9037b973ba1ed49a6e55355082a4555842d74d02
   image_processing (~> 1.2)
   importmap-rails
   jbuilder

@@ -8,13 +8,13 @@ class User < ApplicationRecord
   
    has_one_attached :image
    
-   # has_many :payments, dependent: :destroy
+   has_many :payments, dependent: :destroy
    has_one :cart, dependent: :destroy 
    has_many :orders, dependent: :destroy
    has_many :addresses, dependent: :destroy
 
    after_create :create_cart
-   # after_create :create_stripe_account
+   after_create :create_stripe_account
 
  def generate_reset_password_token
     update(reset_password_token: Devise.token_generator.generate(User, :reset_password_token),
@@ -34,12 +34,12 @@ class User < ApplicationRecord
     Cart.create(user_id: self.id)
   end
 
-  # def create_stripe_account
-  #   # Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-  #   customer = Stripe::Customer.create(
-  #   email: self.email,
-  #   )
+  def create_stripe_account
+    # Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+    customer = Stripe::Customer.create(
+    email: self.email,
+    )
 
-  #   self.update(stripe_id: customer.id)
-  # end
+    self.update(stripe_id: customer.id)
+  end
 end
