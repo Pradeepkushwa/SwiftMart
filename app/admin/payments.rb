@@ -15,5 +15,6 @@ ActiveAdmin.register Payment do
   #   permitted
   # end
   remove_filter :order
+  # remove_filter :payment
   
 end

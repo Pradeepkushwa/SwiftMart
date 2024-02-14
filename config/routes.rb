@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   resources :passwords, only: [:update]
 
+  resources :password_resets, only: [:edit, :update]
+
+
   resources :password_resets do
    get :show_error, on: :collection
    get :edit_error, on: :collection
@@ -29,7 +32,7 @@ Rails.application.routes.draw do
 
 # stripe payment
 
-  post "/payments", to: "payments#create"
+  # post "/payments", to: "payments#create"
    post "/payments/checkout", to: "payments#checkout"
    get  "/payments/retrive_checkout", to: "payments#retrive_checkout"
 

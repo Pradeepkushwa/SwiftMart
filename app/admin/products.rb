@@ -15,7 +15,10 @@ ActiveAdmin.register Product do
   #   permitted
   # end
 
-  # remove_filter :orders
+  remove_filter :orders
+  remove_filter :address
+  remove_filter :carts
+
 
   form do |f|
     f.inputs do

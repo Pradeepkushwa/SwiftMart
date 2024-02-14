@@ -10,16 +10,16 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		
-		# if @current_user == @user
+		byebug
+		if @current_user == @user
 		render json: @user, each_serializer: UserSerializer
-	  # else
-	  # render json: {error: "you can't show other user"}
-	  # end
+	  else
+	  render json: {error: "you can't show other user"}
+	  end
 	end
 
 	def create
-		debugger
+		# debugger
 		@user = User.new(user_params)
 
 		if @user.save

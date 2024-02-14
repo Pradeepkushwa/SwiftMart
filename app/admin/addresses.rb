@@ -15,5 +15,6 @@ ActiveAdmin.register Address do
   #   permitted
   # end
   remove_filter :orders
+  remove_filter :products
   
 end
