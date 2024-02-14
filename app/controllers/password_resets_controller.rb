@@ -1,6 +1,7 @@
 class PasswordResetsController < ApplicationController
      # before_action :authenticate_request, except: [:create]
-    def   new
+    def new
+      # @user = User.new
     end
     
     def create
@@ -21,6 +22,10 @@ class PasswordResetsController < ApplicationController
       def edit
       	# debugger
       	@user = User.find_by(reset_password_token: params[:id])
+        # if @user.nil?
+        # flash[:alert] = 'Invalid reset password token.'
+        # redirect_to root_path # or any other appropriate path
+        # end
       end
 
     def update

@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
                    address_id: params[:address_id]   
                    )
          # debugger
+         # byebug
      	    if order.save
                 order.products << @products
                 @products.destroy_all

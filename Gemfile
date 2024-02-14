@@ -88,3 +88,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "byebug"
+
+# gem "formtastic", github: "justinfrench/formtastic"

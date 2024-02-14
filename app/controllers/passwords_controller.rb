@@ -3,7 +3,6 @@ class PasswordsController < ApplicationController
 		def update
 		debugger
 		@user = @current_user
-
 		 if @user&.authenticate(params[:current_password])
 			if @user.update(password: params[:new_password])
 				render json: {message: "password change successfully"}
