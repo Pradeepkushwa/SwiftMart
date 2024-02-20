@@ -17,9 +17,4 @@ class ApplicationController < ActionController::Base
 	      render json: { errors: e.message }, status: :unauthorized
 	    end
 	end
-
-	# def set_flash
-	# 	flash[:notice] = "log out successfully"
-	# end
-
 end

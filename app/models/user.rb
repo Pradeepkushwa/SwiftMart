@@ -6,20 +6,21 @@ class User < ApplicationRecord
   validates :phone, presence: true
   validates :email, uniqueness: true
   
-   has_one_attached :image
-   
-   has_many :payments, dependent: :destroy
-   has_one :cart, dependent: :destroy 
-   has_many :orders, dependent: :destroy
-   has_many :addresses, dependent: :destroy
+  has_one_attached :image
+  has_many :quantities
+  
+  has_many :payments, dependent: :destroy
+  has_one :cart, dependent: :destroy 
+  has_many :orders, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
-   after_create :create_cart
-   after_create :create_stripe_account
+  after_create :create_cart
+  after_create :create_stripe_account
 
- def generate_reset_password_token
+  def generate_reset_password_token
     update(reset_password_token: Devise.token_generator.generate(User, :reset_password_token),
-           reset_password_sent_at: Time.now,
-           reset_password_used: false)
+     reset_password_sent_at: Time.now,
+     reset_password_used: false)
   end
 
   def reset_password_period_valid?
@@ -37,8 +38,8 @@ class User < ApplicationRecord
   def create_stripe_account
     # Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     customer = Stripe::Customer.create(
-    email: self.email,
-    )
+      email: self.email,
+      )
 
     self.update(stripe_id: customer.id)
   end

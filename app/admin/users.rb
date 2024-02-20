@@ -19,6 +19,7 @@ ActiveAdmin.register User do
   remove_filter :orders
   remove_filter :addresses
   remove_filter :payments
+  remove_filter :quantities
 
   
   form do |f|
@@ -49,7 +50,6 @@ ActiveAdmin.register User do
 
   show do 
      attributes_table do
-     # debugger 
          row :first_name
          row :last_name
          row :email

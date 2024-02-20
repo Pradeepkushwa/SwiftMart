@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post "/add_product/:id", to: "carts#add_product"
 
   delete "/remove_product/:id", to: "carts#remove_product"
+  get "/my_cart",  to: "carts#view_cart"
 
   #  addresses
 

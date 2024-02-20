@@ -8,12 +8,12 @@ RSpec.describe "Orders", type: :request do
    @address = FactoryBot.create(:address, user_id: @user.id)
    @order   = FactoryBot.create(:order,user_id: @user.id, address_id: @address.id)
    @token   = JsonWebToken.encode(user_id: @user.id)
-  end
-  describe "GET /index" do
+ end
+ describe "GET /index" do
     # byebug
     it "data is response successfully"  do 
       get "/orders",params: {token: @token}
-       data = JSON.parse(response.body)
+      data = JSON.parse(response.body)
       expect(response).to have_http_status(200)
     end 
   end
