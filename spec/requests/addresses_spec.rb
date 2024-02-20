@@ -8,7 +8,7 @@ RSpec.describe "Addresses", type: :request do
    @address = FactoryBot.create(:address, user_id: @user.id)
    @token   = JsonWebToken.encode(user_id: @user.id)
  end
-  describe "GET /index" do
+ describe "GET /index" do
     # byebug
     it "data is response successfully" do 
       get "/addresses",params:{token: @token}
@@ -32,12 +32,12 @@ RSpec.describe "Addresses", type: :request do
   describe "POST /create" do
     # byebug
     it "address is created successfully" do 
-    post "/addresses",params:{token: @token, street_address: "string_add", state: "string_state", city: "bhopa", zip_code: 123456}
-    expect(response).to have_http_status(200)
+      post "/addresses",params:{token: @token, street_address: "string_add", state: "string_state", city: "bhopa", zip_code: 123456}
+      expect(response).to have_http_status(200)
     end
     it "address is not created successfully" do
-    post "/addresses",params: {token: @token,street_address: "string_add", state: "string_state", city: "bhopa", zip_code: nil}
-    expect(response).to have_http_status(422)
+      post "/addresses",params: {token: @token,street_address: "string_add", state: "string_state", city: "bhopa", zip_code: nil}
+      expect(response).to have_http_status(422)
     end
   end
 
@@ -55,8 +55,8 @@ RSpec.describe "Addresses", type: :request do
   describe "DELETE /destroy" do
     debugger
     it "address is deleted successfully" do
-    delete "/addresses/#{@address.id}", params: {token: @token}
-    expect(response).to have_http_status(200)
+      delete "/addresses/#{@address.id}", params: {token: @token}
+      expect(response).to have_http_status(200)
     end
     it "address is not found" do
       delete "/addresses/0",params: {token: @token}
