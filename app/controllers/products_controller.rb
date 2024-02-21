@@ -10,9 +10,9 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.present?
      render json: @product, each_serializer: ProductSerializer
-   else
+    else
     render json: {error: "not found"}, status: :not_found
+    end
   end
-end
 
 end

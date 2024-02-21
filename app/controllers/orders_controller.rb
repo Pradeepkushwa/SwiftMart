@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   def create
     @products = @current_user.cart.products
-    order = Order.new(
+    @order = Order.new(
      		           user_id: @current_user.id,
      		           order_number: generate_order_number,
                    total_mrp: calculate_total_mrp, 
@@ -29,35 +29,52 @@ class OrdersController < ApplicationController
                    payment_method: params[:payment_method],
                    address_id: params[:address_id]   
                    )
-     	      if order.save
-            # order.address
-            # address_json = {
-            #       street_address: order.address.street_address,
-            #       city: order.address.city,
-            #       state: order.address.state,
-            #       zip_code: order.address.zip_code
-
-            #   }
-
-            # product_json = {}
-            # @products.each do |pp|
-            #  product = {
-            #       name:"laptop",
-            #       quantity: 3
-            #   }
-            #   product_json.push(product)
-            # end
-                order.products << @products
-                # @products.destroy_all
-
-
-     		   render json: { message: 'Order placed successfully', order: order }
+     	    if @order.save
+                @order.products << @products
+                @products.destroy_all
+                render json: @order, each_serializer: OrderSerializer
+     		      # render json: { message: 'Order placed successfully', order: serialize_order(order) }
      	    else
-     		   render json: { errors: order.errors.full_messages }, status: :unprocessable_entity
+     		   render json: { errors: @order.errors.full_messages }, status: :unprocessable_entity
           end
   end
 
   private
+
+  # def serialize_order(order)
+  #   debugger
+  #    {
+  #     id: order.id,
+  #     user_id: order.user_id,
+  #     order_number: order.order_number,
+  #     total_mrp: order.total_mrp.to_s,
+  #     total_price: order.total_price.to_s,
+  #     discount: order.discount.to_s,
+  #     tax: order.tax.to_s,
+  #     payment_method: order.payment_method,
+  #     created_at: order.created_at,
+  #     updated_at: order.updated_at,
+  #     address: {
+  #       id: order.address.id,
+  #       street: order.address.street_address,
+  #       city: order.address.city,
+  #       state: order.address.state,
+  #       zip_code: order.address.zip_code
+  #     },
+  #     status: order.status,
+  #     products: order.products.map { |product| serialize_product(product) }
+  #   }
+  # end
+  # def serialize_product(product)
+  #   debugger
+  #   {
+  #     product_id: product.id,
+  #     title: product.title,
+  #     description: product.description,
+  #     mrp: product.mrp.to_s,
+  #     price: product.price.to_s
+  #   }
+  # end
   def generate_order_number
     # order_number = 5.times.map { [*0..9   ].sample }.join.to_i
       order_number = SecureRandom.hex(3).to_i(16) % 1_000_000
