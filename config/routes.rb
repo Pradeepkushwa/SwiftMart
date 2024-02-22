@@ -31,11 +31,15 @@ Rails.application.routes.draw do
 
   resources :orders
 
+  resources :notifications
+
 # stripe payment
 
   # post "/payments", to: "payments#create"
    post "/payments/checkout", to: "payments#checkout"
    get  "/payments/retrive_checkout", to: "payments#retrive_checkout"
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
