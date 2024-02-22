@@ -29,6 +29,12 @@ gem "sassc-rails"
 
 gem 'active_model_serializers'
 
+# fcm notification 
+ 
+gem 'fcm'
+
+# 
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 

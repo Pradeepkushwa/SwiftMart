@@ -13,9 +13,14 @@ class User < ApplicationRecord
   has_one :cart, dependent: :destroy 
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   after_create :create_cart
   after_create :create_stripe_account
+
+  # def register_notification(token)
+  #   notifications.create(fcm_token: token)
+  # end
 
   def generate_reset_password_token
     update(reset_password_token: Devise.token_generator.generate(User, :reset_password_token),
