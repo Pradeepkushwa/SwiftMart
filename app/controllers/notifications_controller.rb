@@ -12,20 +12,10 @@ class NotificationsController < ApplicationController
 		render json: @notification
 	end
 
-	def create
-		@notification = @current_user.notifications.new(notification_params)
-
-		if @notification.save
-			render json: @notification
-		else
-		    render json: {errors: @notification.errors.full_messages}, status: :unprocessable_entity
-		end
-
-	end
 
 	def update
 
-		if @notification.update(@notification_params)
+		if @notification.update(notification_params)
 			render json: @notification
 		else
 			render json: {errors: @notification.errors.full_messages}, status: :unprocessable_entity
@@ -33,11 +23,8 @@ class NotificationsController < ApplicationController
 	end
 
 	def destroy
-		if @notification.destroy
-			render json: {message: "notification delete successfully"}
-		else
-		head :no_content
-	    end
+		@notification.destroy
+		render json: {message: "notification delete successfully"}
 	end
 
 	private
