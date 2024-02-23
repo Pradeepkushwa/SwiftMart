@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
     address_id: params[:address_id]   
     )
     if order.save
+      OrderMailer.order_confirmation(order).deliver_now
       # send_fcm_notification(@current_user.notifications.pluck(:fcm_token), "New Order Created", "Order #{order.order_number} has been created!")
 
         order.products << @products
@@ -63,21 +64,21 @@ class OrdersController < ApplicationController
                 zip_code: order.address.zip_code
                 },
       status: order.status,
-      # products: order.products.map { |product| serialize_product(product) }
+      products: serialize_product(order)
     }
   end
 
-    # def serialize_product(order)
-    #     order.products.map do |product|
-    #     {
-    #       id: product.id,
-    #       title: product.title,
-    #       description: product.description,
-    #       mrp: product.mrp,
-    #       price: product.price
-    #     }
-    #     end
-    # end
+    def serialize_product(order)
+        order.products.map do |product|
+        {
+          id: product.id,
+          title: product.title,
+          description: product.description,
+          mrp: product.mrp,
+          price: product.price
+        }
+        end
+    end
 
   # def send_fcm_notification(tokens, title, body)
   #   debugger
