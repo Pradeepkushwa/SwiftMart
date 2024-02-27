@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  after_create :send_notification_after_create_user
 
   after_create :create_cart
   after_create :create_stripe_account
@@ -47,5 +48,10 @@ class User < ApplicationRecord
       )
 
     self.update(stripe_id: customer.id)
+  end
+
+  private
+  def send_notification_after_create_user
+    UserMailer.user_confirmation(self).deliver_now
   end
 end

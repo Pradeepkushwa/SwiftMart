@@ -34815,3 +34815,1825 @@ Content-Transfer-Encoding: 7bit
 Completed 200 OK in 4335ms (Views: 1.9ms | ActiveRecord: 42.2ms | Allocations: 54738)
 
 
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 17:55:02 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"0173cs191038@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "0173cs191038@gmail.com"], ["LIMIT", 1]]
+  ↳ (byebug):1:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "0173cs191038@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 257298ms (Views: 15.1ms | ActiveRecord: 55.2ms | Allocations: 260926)
+
+
+Started POST "/users" for ::1 at 2024-02-26 17:59:49 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Exists? (4.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Create (2.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:30:21.568146"], ["updated_at", "2024-02-26 12:30:21.568146"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (1.5ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:30:21.597304"], ["updated_at", "2024-02-26 12:30:21.597304"], ["user_id", 21]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test@gmail.com"], ["id", 21], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:30:22.267800"], ["stripe_id", "cus_PdJy9lHClObpPK"], ["id", 21]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (8.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test@gmail.com"], ["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 85283ms (ActiveRecord: 34.2ms | Allocations: 735765)
+
+
+  
+NameError (undefined local variable or method `user' for #<UsersController:0x00000000018380>
+Did you mean?  @user):
+  
+app/controllers/users_controller.rb:24:in `create'
+Started POST "/users" for ::1 at 2024-02-26 18:02:04 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (9.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 422 Unprocessable Entity in 18478ms (Views: 3.0ms | ActiveRecord: 15.7ms | Allocations: 436065)
+
+
+Started POST "/users" for ::1 at 2024-02-26 18:02:31 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test1@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (4.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test1@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:32:44.468182"], ["updated_at", "2024-02-26 12:32:44.468182"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.7ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:32:44.525327"], ["updated_at", "2024-02-26 12:32:44.525327"], ["user_id", 22]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test1@gmail.com"], ["id", 22], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:32:45.103997"], ["stripe_id", "cus_PdK0Ng8u8aBa5g"], ["id", 22]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+OrderMailer#user_confirmation: processed outbound mail in 30519.0ms
+Completed 500 Internal Server Error in 52884ms (ActiveRecord: 16.0ms | Allocations: 2857512)
+
+
+  
+NoMethodError (undefined method `user' for #<User id: 22, first_name: "axar", last_name: "patel", email: "test1@gmail.com", phone: 1234567890, password_digest: [FILTERED], created_at: "2024-02-26 12:32:44.468182000 +0000", updated_at: "2024-02-26 12:32:45.103997000 +0000", reset_password_token: nil, reset_password_sent_at: nil, reset_password_used: nil, stripe_id: "cus_PdK0Ng8u8aBa5g">):
+  
+app/mailers/order_mailer.rb:16:in `user_confirmation'
+app/controllers/users_controller.rb:24:in `create'
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:04:16 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test2@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (6.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test2@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:34:24.754249"], ["updated_at", "2024-02-26 12:34:24.754249"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.8ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:34:24.850517"], ["updated_at", "2024-02-26 12:34:24.850517"], ["user_id", 23]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test2@gmail.com"], ["id", 23], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:34:25.520155"], ["stripe_id", "cus_PdK2n1EZB1nALg"], ["id", 23]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+OrderMailer#user_confirmation: processed outbound mail in 19416.8ms
+Completed 500 Internal Server Error in 28655ms (ActiveRecord: 29.0ms | Allocations: 11386999)
+
+
+  
+NoMethodError (undefined method `user' for #<User id: 23, first_name: "axar", last_name: "patel", email: "test2@gmail.com", phone: 1234567890, password_digest: [FILTERED], created_at: "2024-02-26 12:34:24.754249000 +0000", updated_at: "2024-02-26 12:34:25.520155000 +0000", reset_password_token: nil, reset_password_sent_at: nil, reset_password_used: nil, stripe_id: "cus_PdK2n1EZB1nALg">):
+  
+app/mailers/order_mailer.rb:16:in `user_confirmation'
+app/controllers/users_controller.rb:24:in `create'
+Started POST "/users" for ::1 at 2024-02-26 18:05:00 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test3@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test3@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test3@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:36:33.777570"], ["updated_at", "2024-02-26 12:36:33.777570"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.2ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:36:33.783780"], ["updated_at", "2024-02-26 12:36:33.783780"], ["user_id", 24]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test3@gmail.com"], ["id", 24], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:36:34.441869"], ["stripe_id", "cus_PdK4sebyvnLXUe"], ["id", 24]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+OrderMailer#user_confirmation: processed outbound mail in 1454.0ms
+Completed 500 Internal Server Error in 94957ms (ActiveRecord: 10.6ms | Allocations: 102589)
+
+
+  
+ActionView::MissingTemplate (Missing template order_mailer/user_confirmation with "mailer".
+
+Searched in:
+  * "order_mailer"
+):
+  
+app/mailers/order_mailer.rb:16:in `user_confirmation'
+app/controllers/users_controller.rb:24:in `create'
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:06:46 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test4@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (5.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test4@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test4@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:36:51.789200"], ["updated_at", "2024-02-26 12:36:51.789200"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.8ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:36:51.889585"], ["updated_at", "2024-02-26 12:36:51.889585"], ["user_id", 25]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test4@gmail.com"], ["id", 25], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (1.1ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:36:52.534967"], ["stripe_id", "cus_PdK4KTQI41wxsh"], ["id", 25]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+OrderMailer#user_confirmation: processed outbound mail in 62913.7ms
+Completed 500 Internal Server Error in 69508ms (ActiveRecord: 27.2ms | Allocations: 11511960)
+
+
+  
+ActionView::MissingTemplate (Missing template order_mailer/user_confirmation with "mailer".
+
+Searched in:
+  * "order_mailer"
+):
+  
+app/mailers/order_mailer.rb:16:in `user_confirmation'
+app/controllers/users_controller.rb:24:in `create'
+Started POST "/users" for ::1 at 2024-02-26 18:15:09 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test5@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (7.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test5@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test5@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:45:20.347727"], ["updated_at", "2024-02-26 12:45:20.347727"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.9ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:45:20.415071"], ["updated_at", "2024-02-26 12:45:20.415071"], ["user_id", 26]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test5@gmail.com"], ["id", 26], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:45:21.512126"], ["stripe_id", "cus_PdKD1MLbnvEfWv"], ["id", 26]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 86616ms (ActiveRecord: 23.0ms | Allocations: 3233269)
+
+
+  
+NoMethodError (undefined method `user_confirmation' for OrderMailer:Class):
+  
+app/controllers/users_controller.rb:24:in `create'
+Started POST "/users" for ::1 at 2024-02-26 18:16:45 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test6@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test6@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test6@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:48:55.537387"], ["updated_at", "2024-02-26 12:48:55.537387"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.3ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:48:55.541199"], ["updated_at", "2024-02-26 12:48:55.541199"], ["user_id", 27]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test6@gmail.com"], ["id", 27], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:48:56.126268"], ["stripe_id", "cus_PdKGKKpV54V7rd"], ["id", 27]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 130996ms (ActiveRecord: 8.4ms | Allocations: 50996)
+
+
+  
+NoMethodError (undefined method `user_confirmation' for OrderMailer:Class):
+  
+app/controllers/users_controller.rb:24:in `create'
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:19:53 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"test7@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Exists? (30.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test7@gmail.com"], ["LIMIT", 1]]
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "test7@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:50:17.992265"], ["updated_at", "2024-02-26 12:50:17.992265"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.3ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:50:18.009518"], ["updated_at", "2024-02-26 12:50:18.009518"], ["user_id", 28]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test7@gmail.com"], ["id", 28], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:50:18.623691"], ["stripe_id", "cus_PdKHezwdtu6QJX"], ["id", 28]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (8.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test7@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.37ms)
+Completed 422 Unprocessable Entity in 45236ms (Views: 54.9ms | ActiveRecord: 71.0ms | Allocations: 1874777)
+
+
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:21:07 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"demo@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (5.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "demo@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 12:51:25.170744"], ["updated_at", "2024-02-26 12:51:25.170744"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mCart Create (0.8ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 12:51:25.276452"], ["updated_at", "2024-02-26 12:51:25.276452"], ["user_id", 29]]
+  ↳ app/models/user.rb:40:in `create_cart'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@gmail.com"], ["id", 29], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 12:51:25.940482"], ["stripe_id", "cus_PdKJxoZAjWDCbC"], ["id", 29]]
+  ↳ app/models/user.rb:49:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 42615ms (ActiveRecord: 27.6ms | Allocations: 11719500)
+
+
+  
+NameError (uninitialized constant UsersController::UrderMailer
+Did you mean?  OrderMailer
+               UserMailer):
+  
+app/controllers/users_controller.rb:24:in `create'
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:23:53 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"demo@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 422 Unprocessable Entity in 17900ms (Views: 2.0ms | ActiveRecord: 13.7ms | Allocations: 320580)
+
+
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:24:23 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"demo@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (6.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 422 Unprocessable Entity in 9373ms (Views: 6.2ms | ActiveRecord: 18.5ms | Allocations: 7267767)
+
+
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:53:11 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"demo1@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (5.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "demo1@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 13:23:28.704505"], ["updated_at", "2024-02-26 13:23:28.704505"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 716aaf33-ec6b-43b7-866e-20a393e8abf6) to Async(default) with arguments: "UserMailer", "user_confirmation", "deliver_now", {:args=>[#<GlobalID:0x00007f40fca36030 @uri=#<URI::GID gid://e-commerce1/User/30>>]}
+[ActiveJob] ↳ app/models/user.rb:55:in `send_notification_after_create_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mCart Create (0.9ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 13:23:28.957264"], ["updated_at", "2024-02-26 13:23:28.957264"], ["user_id", 30]]
+  ↳ app/models/user.rb:41:in `create_cart'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [716aaf33-ec6b-43b7-866e-20a393e8abf6]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [716aaf33-ec6b-43b7-866e-20a393e8abf6] Error performing ActionMailer::MailDeliveryJob (Job ID: 716aaf33-ec6b-43b7-866e-20a393e8abf6) from Async(default) in 43.79ms: ActiveJob::DeserializationError (Error while trying to deserialize arguments: Couldn't find User with 'id'=30):
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:416:in `raise_record_not_found_exception!'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:522:in `find_one'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:499:in `find_with_ids'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:92:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/querying.rb:23:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/core.rb:246:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:162:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `block in locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `block in unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:914:in `_scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:452:in `scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/scoping/default.rb:51:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:31:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:137:in `deserialize_global_id'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:121:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `block in deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `block in deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `transform_values'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:125:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `block in deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:210:in `deserialize_arguments'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:200:in `deserialize_arguments_if_needed'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:50:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:13:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:40:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:39:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:11:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `block in tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:39:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/broadcast_logger.rb:240:in `method_missing'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:25:in `tag_logger'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:30:in `block in execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:67:in `block (4 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:77:in `block in wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/execution_wrapper.rb:92:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:74:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:66:in `block (3 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `instance_exec'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:141:in `run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:28:in `execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:359:in `run_task'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:350:in `block (3 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `loop'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `block (2 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `catch'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `block in create_worker'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo1@gmail.com"], ["id", 30], ["LIMIT", 1]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 13:23:29.547508"], ["stripe_id", "cus_PdKpwy5fNKQq13"], ["id", 30]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (2.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 30], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (25.22ms)
+Completed 201 Created in 45700ms (Views: 37.0ms | ActiveRecord: 37.6ms | Allocations: 6308766)
+
+
+Started POST "/users" for ::1 at 2024-02-26 18:55:15 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"pradeepkushwaha232365@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pradeepkushwaha232365@gmail.com"], ["LIMIT", 1]]
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "pradeepkushwaha232365@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 13:25:28.902781"], ["updated_at", "2024-02-26 13:25:28.902781"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ (byebug):1:in `create'
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: c701847c-03d6-4de2-91d3-f954905f0a85) to Async(default) with arguments: "UserMailer", "user_confirmation", "deliver_now", {:args=>[#<GlobalID:0x00007f40fcc9c900 @uri=#<URI::GID gid://e-commerce1/User/31>>]}
+[ActiveJob] ↳ app/models/user.rb:55:in `send_notification_after_create_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mCart Create (0.5ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 13:25:28.915169"], ["updated_at", "2024-02-26 13:25:28.915169"], ["user_id", 31]]
+  ↳ app/models/user.rb:41:in `create_cart'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [c701847c-03d6-4de2-91d3-f954905f0a85]   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [c701847c-03d6-4de2-91d3-f954905f0a85] Error performing ActionMailer::MailDeliveryJob (Job ID: c701847c-03d6-4de2-91d3-f954905f0a85) from Async(default) in 17.17ms: ActiveJob::DeserializationError (Error while trying to deserialize arguments: Couldn't find User with 'id'=31):
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:416:in `raise_record_not_found_exception!'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:522:in `find_one'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:499:in `find_with_ids'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:92:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/querying.rb:23:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/core.rb:246:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:162:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `block in locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `block in unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:914:in `_scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:452:in `scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/scoping/default.rb:51:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:31:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:137:in `deserialize_global_id'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:121:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `block in deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `block in deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `transform_values'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:125:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `block in deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:210:in `deserialize_arguments'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:200:in `deserialize_arguments_if_needed'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:50:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:13:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:40:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:39:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:11:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `block in tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:39:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/broadcast_logger.rb:240:in `method_missing'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:25:in `tag_logger'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:30:in `block in execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:67:in `block (4 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:77:in `block in wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/execution_wrapper.rb:92:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:74:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:66:in `block (3 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `instance_exec'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:141:in `run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:28:in `execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:359:in `run_task'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:350:in `block (3 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `loop'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `block (2 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `catch'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `block in create_worker'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "pradeepkushwaha232365@gmail.com"], ["id", 31], ["LIMIT", 1]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 13:25:39.924111"], ["stripe_id", "cus_PdKrvCKko4M7DA"], ["id", 31]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mTRANSACTION (28.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ (byebug):1:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (8.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "pradeepkushwaha232365@gmail.com"], ["id", 31], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 31], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (22.32ms)
+Completed 201 Created in 40829ms (Views: 31.5ms | ActiveRecord: 45.8ms | Allocations: 1597858)
+
+
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 18:59:25 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"pradeepkushwaha23236@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (5.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pradeepkushwaha23236@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "pradeepkushwaha23236@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 13:29:31.480634"], ["updated_at", "2024-02-26 13:29:31.480634"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: a6c5a04a-a7e1-4711-8be4-e7633d479f3d) to Async(default) with arguments: "UserMailer", "user_confirmation", "deliver_now", {:args=>[#<GlobalID:0x00007ff84c604018 @uri=#<URI::GID gid://e-commerce1/User/32>>]}
+[ActiveJob] ↳ app/models/user.rb:55:in `send_notification_after_create_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mCart Create (0.9ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 13:29:31.748125"], ["updated_at", "2024-02-26 13:29:31.748125"], ["user_id", 32]]
+  ↳ app/models/user.rb:41:in `create_cart'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [a6c5a04a-a7e1-4711-8be4-e7633d479f3d]   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [a6c5a04a-a7e1-4711-8be4-e7633d479f3d] Error performing ActionMailer::MailDeliveryJob (Job ID: a6c5a04a-a7e1-4711-8be4-e7633d479f3d) from Async(default) in 49.21ms: ActiveJob::DeserializationError (Error while trying to deserialize arguments: Couldn't find User with 'id'=32):
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:416:in `raise_record_not_found_exception!'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:522:in `find_one'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:499:in `find_with_ids'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:92:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/querying.rb:23:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/core.rb:246:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:162:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `block in locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `block in unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:914:in `_scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:452:in `scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/scoping/default.rb:51:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:31:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:137:in `deserialize_global_id'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:121:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `block in deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `block in deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `transform_values'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:125:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `block in deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:210:in `deserialize_arguments'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:200:in `deserialize_arguments_if_needed'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:50:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:13:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:40:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:39:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:11:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `block in tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:39:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/broadcast_logger.rb:240:in `method_missing'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:25:in `tag_logger'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:30:in `block in execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:67:in `block (4 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:77:in `block in wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/execution_wrapper.rb:92:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:74:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:66:in `block (3 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `instance_exec'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:141:in `run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:28:in `execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:359:in `run_task'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:350:in `block (3 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `loop'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `block (2 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `catch'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `block in create_worker'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "pradeepkushwaha23236@gmail.com"], ["id", 32], ["LIMIT", 1]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 13:29:33.531890"], ["stripe_id", "cus_PdKvrCkqOPkpJ0"], ["id", 32]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 32], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (33.87ms)
+Completed 201 Created in 10384ms (Views: 41.3ms | ActiveRecord: 31.7ms | Allocations: 12853934)
+
+
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-26 19:00:10 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"pradeepkushwaha23236@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pradeepkushwaha23236@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 422 Unprocessable Entity in 9257ms (Views: 2.2ms | ActiveRecord: 15.6ms | Allocations: 320216)
+
+
+Started POST "/users" for ::1 at 2024-02-26 19:00:32 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"pradeepkushwaha@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (5.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pradeepkushwaha@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "pradeepkushwaha@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 13:30:43.343146"], ["updated_at", "2024-02-26 13:30:43.343146"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 9f8ace3d-a68c-4148-8441-f59a5f28882b) to Async(default) with arguments: "UserMailer", "user_confirmation", "deliver_now", {:args=>[#<GlobalID:0x00007f6f34fe6938 @uri=#<URI::GID gid://e-commerce1/User/33>>]}
+[ActiveJob] ↳ app/models/user.rb:55:in `send_notification_after_create_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mCart Create (1.0ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 13:30:43.659957"], ["updated_at", "2024-02-26 13:30:43.659957"], ["user_id", 33]]
+  ↳ app/models/user.rb:41:in `create_cart'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [9f8ace3d-a68c-4148-8441-f59a5f28882b]   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [9f8ace3d-a68c-4148-8441-f59a5f28882b] Error performing ActionMailer::MailDeliveryJob (Job ID: 9f8ace3d-a68c-4148-8441-f59a5f28882b) from Async(default) in 52.95ms: ActiveJob::DeserializationError (Error while trying to deserialize arguments: Couldn't find User with 'id'=33):
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:416:in `raise_record_not_found_exception!'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:522:in `find_one'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:499:in `find_with_ids'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation/finder_methods.rb:92:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/querying.rb:23:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/core.rb:246:in `find'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:162:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `block in locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `block in unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:914:in `_scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/relation.rb:452:in `scoping'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/scoping/default.rb:51:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:220:in `unscoped'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:210:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/globalid-1.2.1/lib/global_id/locator.rb:31:in `locate'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:137:in `deserialize_global_id'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:121:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `block in deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:118:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `block in deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `transform_values'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:151:in `deserialize_hash'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:125:in `deserialize_argument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `block in deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `map'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/arguments.rb:43:in `deserialize'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:210:in `deserialize_arguments'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/core.rb:200:in `deserialize_arguments_if_needed'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:50:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:13:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:40:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `block in instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/notifications.rb:206:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:39:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activerecord-7.1.2/lib/active_record/railties/job_runtime.rb:11:in `instrument'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/instrumentation.rb:26:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `block in perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `block in tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:39:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/tagged_logging.rb:135:in `tagged'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/broadcast_logger.rb:240:in `method_missing'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:25:in `tag_logger'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/logging.rb:18:in `perform_now'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:30:in `block in execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:67:in `block (4 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:77:in `block in wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/execution_wrapper.rb:92:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/reloader.rb:74:in `wrap'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/railtie.rb:66:in `block (3 levels) in <class:Railtie>'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `instance_exec'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activesupport-7.1.2/lib/active_support/callbacks.rb:141:in `run_callbacks'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/execution.rb:28:in `execute'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/activejob-7.1.2/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:359:in `run_task'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:350:in `block (3 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `loop'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `block (2 levels) in create_worker'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `catch'
+/home/lenovo/Desktop/eCommerce_Application/vendor/bundle/ruby/3.0.0/gems/concurrent-ruby-1.2.3/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `block in create_worker'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "pradeepkushwaha@gmail.com"], ["id", 33], ["LIMIT", 1]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 13:30:46.420495"], ["stripe_id", "cus_PdKw2YMIlGZBPh"], ["id", 33]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 33], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (32.67ms)
+Completed 201 Created in 15900ms (Views: 37.7ms | ActiveRecord: 21.5ms | Allocations: 7672188)
+
+
+Started POST "/users" for ::1 at 2024-02-26 19:01:55 +0530
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"axar", "last_name"=>"patel", "email"=>"pradeepkushwaha1@gmail.com", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pradeepkushwaha1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "axar"], ["last_name", "patel"], ["email", "pradeepkushwaha1@gmail.com"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-26 13:32:05.816942"], ["updated_at", "2024-02-26 13:32:05.816942"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/user_confirmation.html.erb within layouts/mailer
+  Rendered user_mailer/user_confirmation.html.erb within layouts/mailer (Duration: 0.7ms | Allocations: 168)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.5ms | Allocations: 447)
+UserMailer#user_confirmation: processed outbound mail in 3924.4ms
+Delivered mail 65dc92d9b66e6_fdc15a7866252@lenovo-IdeaPad-3-15ITL6.mail (5330.4ms)
+Date: Mon, 26 Feb 2024 19:02:09 +0530
+From: from@example.com
+To: pradeepkushwaha1@gmail.com
+Message-ID: <65dc92d9b66e6_fdc15a7866252@lenovo-IdeaPad-3-15ITL6.mail>
+Subject: Welcome to Ecommerce Application
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>User Created Confirmation</h1>
+<p>Welcome to our Ecommerce Application!</p>
+  </body>
+</html>
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mCart Create (1.0ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-26 13:32:15.091383"], ["updated_at", "2024-02-26 13:32:15.091383"], ["user_id", 34]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "pradeepkushwaha1@gmail.com"], ["id", 34], ["LIMIT", 1]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-26 13:32:21.128159"], ["stripe_id", "cus_PdKyKV9Ey1QoZM"], ["id", 34]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mTRANSACTION (28.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 34], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (11.28ms)
+Completed 201 Created in 25803ms (Views: 7.3ms | ActiveRecord: 53.4ms | Allocations: 121716)
+
+
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mPUBLISHABLE_KEY[0m and [36mSECRET_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/users" for ::1 at 2024-02-27 11:27:45 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"ayush", "last_name"=>"jain", "email"=>"ayush.jain@taskcraft.in", "phone"=>"1234567890", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ayush.jain@taskcraft.in"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "phone", "password_digest", "created_at", "updated_at", "reset_password_token", "reset_password_sent_at", "reset_password_used", "stripe_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["first_name", "ayush"], ["last_name", "jain"], ["email", "ayush.jain@taskcraft.in"], ["phone", 1234567890], ["password_digest", "[FILTERED]"], ["created_at", "2024-02-27 05:57:50.143705"], ["updated_at", "2024-02-27 05:57:50.143705"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_used", "[FILTERED]"], ["stripe_id", nil]]
+  ↳ app/controllers/users_controller.rb:23:in `create'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/user_confirmation.html.erb within layouts/mailer
+  Rendered user_mailer/user_confirmation.html.erb within layouts/mailer (Duration: 0.6ms | Allocations: 351)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.5ms | Allocations: 635)
+UserMailer#user_confirmation: processed outbound mail in 2430.4ms
+Delivered mail 65dd79e091a8d_11c8c5a8c11263@lenovo-IdeaPad-3-15ITL6.mail (4579.8ms)
+Date: Tue, 27 Feb 2024 11:27:52 +0530
+From: from@example.com
+To: ayush.jain@taskcraft.in
+Message-ID: <65dd79e091a8d_11c8c5a8c11263@lenovo-IdeaPad-3-15ITL6.mail>
+Subject: Welcome to Ecommerce Application
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to [eCommerce Application Platform]!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #008080;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            text-decoration: none;
+            background-color: #008080;
+            color: #fff;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to [Ecommerce Application Platform]!</h1>
+        <p>Dear [User],</p>
+        <p>We're thrilled to have you on board and appreciate you choosing us for your online shopping needs.</p>
+        <p>Here at [Your Ecommerce Platform], we strive to provide an exceptional shopping experience, and we're confident that you'll find everything you need among our diverse range of products.</p>
+        <p>As a registered member, you now have access to exclusive benefits, personalized recommendations, and a seamless checkout process. Whether you're looking for the latest fashion trends, high-quality electronics, or home essentials, we've got you covered.</p>
+        <p>To get started, feel free to <a href="[YourWebsiteLink]">browse our website</a> and discover the latest additions to our catalog. Don't forget to check out our special offers and promotions to make your shopping experience even more rewarding.</p>
+        <p>If you have any questions or need assistance, our dedicated customer support team is here to help. Simply reply to this email, and we'll be happy to assist you.</p>
+        <p>Thank you for choosing [Your Ecommerce Platform]! We look forward to serving you and making your online shopping experience enjoyable.</p>
+        <p>Happy shopping!</p>
+        <p>Best regards,<br>[eCommerce_Application Team</p>
+    </div>
+</body>
+</html>
+
+  </body>
+</html>
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mCart Create (0.6ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2024-02-27 05:57:57.200304"], ["updated_at", "2024-02-27 05:57:57.200304"], ["user_id", 35]]
+  ↳ app/models/user.rb:41:in `create_cart'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "ayush.jain@taskcraft.in"], ["id", 35], ["LIMIT", 1]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "stripe_id" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-02-27 05:57:57.926860"], ["stripe_id", "cus_PdarOUBOV1PdAy"], ["id", 35]]
+  ↳ app/models/user.rb:50:in `create_stripe_account'
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 35], ["record_type", "User"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `image'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (8.32ms)
+Completed 201 Created in 11979ms (Views: 13.0ms | ActiveRecord: 33.2ms | Allocations: 453874)
+
+
+Started POST "/auth/login" for ::1 at 2024-02-27 11:30:16 +0530
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"ayush.jain@taskcraft.in", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ayush.jain@taskcraft.in"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:3:in `login'
+DEPRECATION WARNING: `Rails.application.secrets` is deprecated in favor of `Rails.application.credentials` and will be removed in Rails 7.2. (called from <class:JsonWebToken> at /home/lenovo/Desktop/eCommerce_Application/app/lib/json_web_token.rb:2)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 214ms (Views: 1.7ms | ActiveRecord: 2.0ms | Allocations: 9500)
+
+
+Started GET "/products" for ::1 at 2024-02-27 11:30:36 +0530
+Processing by ProductsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:6:in `index'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:8:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (42.78ms)
+Completed 200 OK in 65ms (Views: 53.5ms | ActiveRecord: 8.2ms | Allocations: 205096)
+
+
+Started POST "/add_product/4" for ::1 at 2024-02-27 11:31:10 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+  [1m[36mProduct Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 30], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mQuantity Create (0.8ms)[0m  [1m[32mINSERT INTO "quantities" ("quantity", "product_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["quantity", 1], ["product_id", 4], ["user_id", 35], ["created_at", "2024-02-27 06:01:11.039079"], ["updated_at", "2024-02-27 06:01:11.039079"]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mCart::HABTM_Products Create (0.8ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 30], ["product_id", 4]]
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 200 OK in 53ms (Views: 0.5ms | ActiveRecord: 15.0ms | Allocations: 62217)
+
+
+Started POST "/add_product/5" for ::1 at 2024-02-27 11:31:15 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.1ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+  [1m[36mProduct Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 30], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mQuantity Create (0.2ms)[0m  [1m[32mINSERT INTO "quantities" ("quantity", "product_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["quantity", 1], ["product_id", 5], ["user_id", 35], ["created_at", "2024-02-27 06:01:15.012064"], ["updated_at", "2024-02-27 06:01:15.012064"]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mCart::HABTM_Products Create (0.7ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 30], ["product_id", 5]]
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 6.6ms | Allocations: 8046)
+
+
+Started POST "/add_product/2" for ::1 at 2024-02-27 11:31:17 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.1ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+  [1m[36mProduct Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 30], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mQuantity Create (0.3ms)[0m  [1m[32mINSERT INTO "quantities" ("quantity", "product_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["quantity", 1], ["product_id", 2], ["user_id", 35], ["created_at", "2024-02-27 06:01:17.885146"], ["updated_at", "2024-02-27 06:01:17.885146"]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mCart::HABTM_Products Create (1.0ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 30], ["product_id", 2]]
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 4.5ms | Allocations: 8023)
+
+
+Started POST "/add_product/12" for ::1 at 2024-02-27 11:31:22 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.6ms | Allocations: 2385)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=12):
+  
+app/controllers/carts_controller.rb:9:in `add_product'
+Started POST "/add_product/2" for ::1 at 2024-02-27 11:31:27 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+  [1m[36mProduct Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 30], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mQuantity Load (0.3ms)[0m  [1m[34mSELECT "quantities".* FROM "quantities" WHERE "quantities"."product_id" = $1 AND "quantities"."user_id" = $2 ORDER BY "quantities"."id" DESC LIMIT $3[0m  [["product_id", 2], ["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:12:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:15:in `add_product'
+  [1m[36mQuantity Update (1.4ms)[0m  [1m[33mUPDATE "quantities" SET "quantity" = $1, "updated_at" = $2 WHERE "quantities"."id" = $3[0m  [["quantity", 2], ["updated_at", "2024-02-27 06:01:27.594536"], ["id", 51]]
+  ↳ app/controllers/carts_controller.rb:15:in `add_product'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:15:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 200 OK in 15ms (Views: 0.7ms | ActiveRecord: 3.3ms | Allocations: 6844)
+
+
+Started GET "/my_cart" for ::1 at 2024-02-27 11:31:35 +0530
+Processing by CartsController#view_cart as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:4:in `view_cart'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/carts_controller.rb:4:in `view_cart'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:8:in `image'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (7.12ms)
+Completed 200 OK in 14ms (Views: 9.2ms | ActiveRecord: 1.3ms | Allocations: 7786)
+
+
+Started GET "/addresses" for ::1 at 2024-02-27 11:31:50 +0530
+Processing by AddressesController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.4ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1[0m  [["user_id", 35]]
+  ↳ app/controllers/addresses_controller.rb:6:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.35ms)
+Completed 200 OK in 7ms (Views: 2.3ms | ActiveRecord: 2.1ms | Allocations: 4054)
+
+
+Started POST "/addresses" for ::1 at 2024-02-27 11:32:10 +0530
+Processing by AddressesController#create as */*
+  Parameters: {"street_address"=>"tilak nagar", "city"=>"indore", "state"=>"madhya pradesh", "zip_code"=>"452010"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/addresses_controller.rb:20:in `create'
+  [1m[36mAddress Create (27.9ms)[0m  [1m[32mINSERT INTO "addresses" ("street_address", "city", "state", "zip_code", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["street_address", "tilak nagar"], ["city", "indore"], ["state", "madhya pradesh"], ["zip_code", 452010], ["created_at", "2024-02-27 06:02:10.026496"], ["updated_at", "2024-02-27 06:02:10.026496"], ["user_id", 35]]
+  ↳ app/controllers/addresses_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/addresses_controller.rb:20:in `create'
+[active_model_serializers] Rendered AddressSerializer with ActiveModelSerializers::Adapter::Json (0.39ms)
+Completed 200 OK in 50ms (Views: 1.3ms | ActiveRecord: 29.9ms | Allocations: 56971)
+
+
+Started GET "/addresses" for ::1 at 2024-02-27 11:32:16 +0530
+Processing by AddressesController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1[0m  [["user_id", 35]]
+  ↳ app/controllers/addresses_controller.rb:6:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (0.21ms)
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.2ms | Allocations: 1832)
+
+
+Started GET "/addresses/11" for ::1 at 2024-02-27 11:32:21 +0530
+Processing by AddressesController#show as */*
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1 AND "addresses"."id" = $2 LIMIT $3[0m  [["user_id", 35], ["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:11:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 401 Unauthorized in 4ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1675)
+
+
+Started GET "/addresses/19" for ::1 at 2024-02-27 11:32:24 +0530
+Processing by AddressesController#show as */*
+  Parameters: {"id"=>"19"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = $1 AND "addresses"."id" = $2 LIMIT $3[0m  [["user_id", 35], ["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:11:in `show'
+[active_model_serializers] Rendered AddressSerializer with ActiveModelSerializers::Adapter::Json (0.16ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1761)
+
+
+Started POST "/orders" for ::1 at 2024-02-27 11:32:34 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"payment_method"=>"coins", "address_id"=>18, "order"=>{"payment_method"=>"coins", "address_id"=>18}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.3ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mProduct Sum (0.5ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:113:in `calculate_total_mrp'
+  [1m[36mProduct Sum (0.2ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:113:in `calculate_total_mrp'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mOrder Create (1.4ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "order_number", "total_mrp", "total_price", "discount", "tax", "payment_method", "created_at", "updated_at", "address_id", "status") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", 35], ["order_number", 309861], ["total_mrp", "1498.0"], ["total_price", "7999.0"], ["discount", "0.0"], ["tax", "399.95"], ["payment_method", "coins"], ["created_at", "2024-02-27 06:02:34.369537"], ["updated_at", "2024-02-27 06:02:34.369537"], ["address_id", 18], ["status", 0]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/models/order.rb:17:in `send_notification'
+  [1m[36mNotification Create (1.0ms)[0m  [1m[32mINSERT INTO "notifications" ("user_id", "message", "read", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 35], ["message", "your order has been placed successfully"], ["read", true], ["created_at", "2024-02-27 06:02:34.382629"], ["updated_at", "2024-02-27 06:02:34.382629"]]
+  ↳ app/models/order.rb:17:in `send_notification'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  Rendering layout layouts/mailer.html.erb
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (Duration: 0.4ms | Allocations: 504)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.6ms | Allocations: 736)
+OrderMailer#order_confirmation: processed outbound mail in 3.5ms
+Delivered mail 65dd7afa5f8f1_11c8c5ab411330@lenovo-IdeaPad-3-15ITL6.mail (3753.5ms)
+Date: Tue, 27 Feb 2024 11:32:34 +0530
+From: from@example.com
+To: ayush.jain@taskcraft.in
+Message-ID: <65dd7afa5f8f1_11c8c5ab411330@lenovo-IdeaPad-3-15ITL6.mail>
+Subject: order confirmation
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Order Confirmation</h1>
+<p>Thank you for your order!</p>
+<h1>Order Details</h1>
+<table border="1">
+  <tr>
+    <th>User Name</th>
+    <td>ayush&nbsp;
+      jain</td>
+  </tr>
+  <tr>
+    <th>Order Number</th>
+    <td>309861</td>
+  </tr>
+  <tr>
+    <th>Total MRP</th>
+    <td>1498.0</td>
+  </tr>
+  <tr>
+    <th>Total Price</th>
+    <td>7999.0</td>
+  </tr>
+  <tr>
+    <th>Discount</th>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <th>Tax</th>
+    <td>399.95</td>
+  </tr>
+  <tr>
+    <th>Payment Method</th>
+    <td>coins</td>
+  </tr>
+  <tr>
+   <th>Address Details</th>
+       <table border="1">
+      <tr>
+        <th>street_address</th>
+        <td>airport</td>
+      </tr>
+      <tr>
+        <th>city</th>
+        <td>indore</td>
+      </tr>
+      <tr>
+        <th>state</th>
+        <td>madhya pradesh</td>
+      </tr>
+      <tr>
+        <th>zip_code</th>
+        <td>452010</td>
+      </tr>
+
+    </table>
+  </tr>
+</table>
+
+
+  </body>
+</html>
+
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder::HABTM_Products Create (0.8ms)[0m  [1m[32mINSERT INTO "orders_products" ("product_id", "order_id") VALUES ($1, $2)[0m  [["product_id", 4], ["order_id", 132]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder::HABTM_Products Create (0.2ms)[0m  [1m[32mINSERT INTO "orders_products" ("product_id", "order_id") VALUES ($1, $2)[0m  [["product_id", 5], ["order_id", 132]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder::HABTM_Products Create (0.1ms)[0m  [1m[32mINSERT INTO "orders_products" ("product_id", "order_id") VALUES ($1, $2)[0m  [["product_id", 2], ["order_id", 132]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mHABTM_Products Load (0.7ms)[0m  [1m[34mSELECT "carts_products".* FROM "carts_products" WHERE "carts_products"."cart_id" = $1 AND "carts_products"."product_id" IN ($2, $3, $4)[0m  [["cart_id", 30], ["product_id", 4], ["product_id", 5], ["product_id", 2]]
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mCart::HABTM_Products Delete All (0.9ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."cart_id" = $1 AND "carts_products"."product_id" IN ($2, $3, $4)[0m  [["cart_id", 30], ["product_id", 4], ["product_id", 5], ["product_id", 2]]
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 132]]
+  ↳ app/controllers/orders_controller.rb:72:in `map'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 200 OK in 3842ms (Views: 0.7ms | ActiveRecord: 19.0ms | Allocations: 177611)
+
+
+Started POST "/orders" for ::1 at 2024-02-27 11:33:01 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"payment_method"=>"coins", "address_id"=>19, "order"=>{"payment_method"=>"coins", "address_id"=>19}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mProduct Sum (0.2ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:113:in `calculate_total_mrp'
+  [1m[36mProduct Sum (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:113:in `calculate_total_mrp'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "order_number", "total_mrp", "total_price", "discount", "tax", "payment_method", "created_at", "updated_at", "address_id", "status") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", 35], ["order_number", 238006], ["total_mrp", "0.0"], ["total_price", "0.0"], ["discount", "0.0"], ["tax", "0.0"], ["payment_method", "coins"], ["created_at", "2024-02-27 06:03:01.042350"], ["updated_at", "2024-02-27 06:03:01.042350"], ["address_id", 19], ["status", 0]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/models/order.rb:17:in `send_notification'
+  [1m[36mNotification Create (0.2ms)[0m  [1m[32mINSERT INTO "notifications" ("user_id", "message", "read", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 35], ["message", "your order has been placed successfully"], ["read", true], ["created_at", "2024-02-27 06:03:01.044677"], ["updated_at", "2024-02-27 06:03:01.044677"]]
+  ↳ app/models/order.rb:17:in `send_notification'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  Rendering layout layouts/mailer.html.erb
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 56)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.2ms | Allocations: 141)
+OrderMailer#order_confirmation: processed outbound mail in 1.0ms
+Delivered mail 65dd7b15c7de_11c8c5a8c11460@lenovo-IdeaPad-3-15ITL6.mail (3748.4ms)
+Date: Tue, 27 Feb 2024 11:33:01 +0530
+From: from@example.com
+To: ayush.jain@taskcraft.in
+Message-ID: <65dd7b15c7de_11c8c5a8c11460@lenovo-IdeaPad-3-15ITL6.mail>
+Subject: order confirmation
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Order Confirmation</h1>
+<p>Thank you for your order!</p>
+<h1>Order Details</h1>
+<table border="1">
+  <tr>
+    <th>User Name</th>
+    <td>ayush&nbsp;
+      jain</td>
+  </tr>
+  <tr>
+    <th>Order Number</th>
+    <td>238006</td>
+  </tr>
+  <tr>
+    <th>Total MRP</th>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <th>Total Price</th>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <th>Discount</th>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <th>Tax</th>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <th>Payment Method</th>
+    <td>coins</td>
+  </tr>
+  <tr>
+   <th>Address Details</th>
+       <table border="1">
+      <tr>
+        <th>street_address</th>
+        <td>tilak nagar</td>
+      </tr>
+      <tr>
+        <th>city</th>
+        <td>indore</td>
+      </tr>
+      <tr>
+        <th>state</th>
+        <td>madhya pradesh</td>
+      </tr>
+      <tr>
+        <th>zip_code</th>
+        <td>452010</td>
+      </tr>
+
+    </table>
+  </tr>
+</table>
+
+
+  </body>
+</html>
+
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 133]]
+  ↳ app/controllers/orders_controller.rb:72:in `map'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 200 OK in 3772ms (Views: 0.8ms | ActiveRecord: 6.6ms | Allocations: 16291)
+
+
+Started POST "/add_product/2" for ::1 at 2024-02-27 11:33:14 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.1ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+  [1m[36mProduct Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 30], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mQuantity Create (0.1ms)[0m  [1m[32mINSERT INTO "quantities" ("quantity", "product_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["quantity", 1], ["product_id", 2], ["user_id", 35], ["created_at", "2024-02-27 06:03:14.152060"], ["updated_at", "2024-02-27 06:03:14.152060"]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mCart::HABTM_Products Create (1.0ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 30], ["product_id", 2]]
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.2ms)
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 6.8ms | Allocations: 8022)
+
+
+Started POST "/add_product/4" for ::1 at 2024-02-27 11:33:16 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+  [1m[36mProduct Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 30], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mQuantity Create (0.4ms)[0m  [1m[32mINSERT INTO "quantities" ("quantity", "product_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["quantity", 1], ["product_id", 4], ["user_id", 35], ["created_at", "2024-02-27 06:03:16.414486"], ["updated_at", "2024-02-27 06:03:16.414486"]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mCart::HABTM_Products Create (1.2ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 30], ["product_id", 4]]
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 200 OK in 17ms (Views: 0.5ms | ActiveRecord: 5.1ms | Allocations: 8014)
+
+
+Started POST "/add_product/5" for ::1 at 2024-02-27 11:33:18 +0530
+Processing by CartsController#add_product as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:8:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:9:in `add_product'
+  [1m[36mProduct Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1 AND "products"."id" = $2 LIMIT $3[0m  [["cart_id", 30], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:11:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mQuantity Create (0.2ms)[0m  [1m[32mINSERT INTO "quantities" ("quantity", "product_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["quantity", 1], ["product_id", 5], ["user_id", 35], ["created_at", "2024-02-27 06:03:18.660346"], ["updated_at", "2024-02-27 06:03:18.660346"]]
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:17:in `add_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mCart::HABTM_Products Create (0.8ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 30], ["product_id", 5]]
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/carts_controller.rb:18:in `add_product'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 4.2ms | Allocations: 8014)
+
+
+Started GET "/my_cart" for ::1 at 2024-02-27 11:33:26 +0530
+Processing by CartsController#view_cart as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.1ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/carts_controller.rb:4:in `view_cart'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/carts_controller.rb:4:in `view_cart'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:8:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "Product"], ["name", "image"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/product_serializer.rb:7:in `image'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (3.86ms)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.7ms | Allocations: 6792)
+
+
+Started POST "/orders" for ::1 at 2024-02-27 11:33:31 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"payment_method"=>"coins", "address_id"=>19, "order"=>{"payment_method"=>"coins", "address_id"=>19}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mCart Load (0.1ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mProduct Sum (0.2ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:113:in `calculate_total_mrp'
+  [1m[36mProduct Sum (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."mrp") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:113:in `calculate_total_mrp'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE Product Sum (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:121:in `calculate_total_price'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mOrder Create (0.6ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "order_number", "total_mrp", "total_price", "discount", "tax", "payment_method", "created_at", "updated_at", "address_id", "status") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", 35], ["order_number", 513491], ["total_mrp", "1498.0"], ["total_price", "7999.0"], ["discount", "0.0"], ["tax", "399.95"], ["payment_method", "coins"], ["created_at", "2024-02-27 06:03:31.096330"], ["updated_at", "2024-02-27 06:03:31.096330"], ["address_id", 19], ["status", 0]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/models/order.rb:17:in `send_notification'
+  [1m[36mNotification Create (0.3ms)[0m  [1m[32mINSERT INTO "notifications" ("user_id", "message", "read", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 35], ["message", "your order has been placed successfully"], ["read", true], ["created_at", "2024-02-27 06:03:31.099651"], ["updated_at", "2024-02-27 06:03:31.099651"]]
+  ↳ app/models/order.rb:17:in `send_notification'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  Rendering layout layouts/mailer.html.erb
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 56)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.2ms | Allocations: 141)
+OrderMailer#order_confirmation: processed outbound mail in 1.1ms
+Delivered mail 65dd7b331a0f0_11c8c5a8c11550@lenovo-IdeaPad-3-15ITL6.mail (3389.0ms)
+Date: Tue, 27 Feb 2024 11:33:31 +0530
+From: from@example.com
+To: ayush.jain@taskcraft.in
+Message-ID: <65dd7b331a0f0_11c8c5a8c11550@lenovo-IdeaPad-3-15ITL6.mail>
+Subject: order confirmation
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Order Confirmation</h1>
+<p>Thank you for your order!</p>
+<h1>Order Details</h1>
+<table border="1">
+  <tr>
+    <th>User Name</th>
+    <td>ayush&nbsp;
+      jain</td>
+  </tr>
+  <tr>
+    <th>Order Number</th>
+    <td>513491</td>
+  </tr>
+  <tr>
+    <th>Total MRP</th>
+    <td>1498.0</td>
+  </tr>
+  <tr>
+    <th>Total Price</th>
+    <td>7999.0</td>
+  </tr>
+  <tr>
+    <th>Discount</th>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <th>Tax</th>
+    <td>399.95</td>
+  </tr>
+  <tr>
+    <th>Payment Method</th>
+    <td>coins</td>
+  </tr>
+  <tr>
+   <th>Address Details</th>
+       <table border="1">
+      <tr>
+        <th>street_address</th>
+        <td>tilak nagar</td>
+      </tr>
+      <tr>
+        <th>city</th>
+        <td>indore</td>
+      </tr>
+      <tr>
+        <th>state</th>
+        <td>madhya pradesh</td>
+      </tr>
+      <tr>
+        <th>zip_code</th>
+        <td>452010</td>
+      </tr>
+
+    </table>
+  </tr>
+</table>
+
+
+  </body>
+</html>
+
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 30]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder::HABTM_Products Create (2.1ms)[0m  [1m[32mINSERT INTO "orders_products" ("product_id", "order_id") VALUES ($1, $2)[0m  [["product_id", 2], ["order_id", 134]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder::HABTM_Products Create (0.3ms)[0m  [1m[32mINSERT INTO "orders_products" ("product_id", "order_id") VALUES ($1, $2)[0m  [["product_id", 4], ["order_id", 134]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mOrder::HABTM_Products Create (0.3ms)[0m  [1m[32mINSERT INTO "orders_products" ("product_id", "order_id") VALUES ($1, $2)[0m  [["product_id", 5], ["order_id", 134]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mHABTM_Products Load (1.3ms)[0m  [1m[34mSELECT "carts_products".* FROM "carts_products" WHERE "carts_products"."cart_id" = $1 AND "carts_products"."product_id" IN ($2, $3, $4)[0m  [["cart_id", 30], ["product_id", 2], ["product_id", 4], ["product_id", 5]]
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mCart::HABTM_Products Delete All (0.2ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."cart_id" = $1 AND "carts_products"."product_id" IN ($2, $3, $4)[0m  [["cart_id", 30], ["product_id", 2], ["product_id", 4], ["product_id", 5]]
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:38:in `create'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 134]]
+  ↳ app/controllers/orders_controller.rb:72:in `map'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 200 OK in 3433ms (Views: 0.4ms | ActiveRecord: 14.6ms | Allocations: 23748)
+
+
+Started GET "/orders" for ::1 at 2024-02-27 11:34:03 +0530
+Processing by OrdersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (7.78ms)
+Completed 200 OK in 21ms (Views: 10.5ms | ActiveRecord: 0.9ms | Allocations: 21045)
+
+
+Started POST "/payments/checkout" for ::1 at 2024-02-27 11:34:38 +0530
+Processing by PaymentsController#checkout as */*
+  Parameters: {"order_id"=>"134"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 134], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:5:in `checkout'
+  [1m[36mProduct Pluck (0.2ms)[0m  [1m[34mSELECT "products"."title" FROM "products" INNER JOIN "orders_products" ON "products"."id" = "orders_products"."product_id" WHERE "orders_products"."order_id" = $1[0m  [["order_id", 134]]
+  ↳ app/controllers/payments_controller.rb:13:in `checkout'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:30:in `checkout'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/payments_controller.rb:30:in `checkout'
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 134], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:30:in `checkout'
+  [1m[36mPayment Create (3.6ms)[0m  [1m[32mINSERT INTO "payments" ("payment_intent_id", "payment_status", "checkout_session_id", "user_id", "order_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["payment_intent_id", nil], ["payment_status", "inprogress"], ["checkout_session_id", "cs_test_a1TQHqzGav8zAiTE1gZ27Bqyx9OhTA7I2RVlDzkMY9svaWGXdWzJhWT8NF"], ["user_id", 35], ["order_id", 134], ["created_at", "2024-02-27 06:04:39.463362"], ["updated_at", "2024-02-27 06:04:39.463362"]]
+  ↳ app/controllers/payments_controller.rb:30:in `checkout'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/payments_controller.rb:30:in `checkout'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Stripe::Checkout::Session (0.09ms)
+Completed 200 OK in 961ms (Views: 1.4ms | ActiveRecord: 11.5ms | Allocations: 55317)
+
+
+Started GET "/" for ::1 at 2024-02-27 11:37:58 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering vendor/bundle/ruby/3.0.0/gems/railties-7.1.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered vendor/bundle/ruby/3.0.0/gems/railties-7.1.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | Allocations: 450)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 1648)
+
+
+Started GET "/signin" for ::1 at 2024-02-27 11:38:01 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/signin"):
+  
+Started GET "/admin" for ::1 at 2024-02-27 11:38:02 +0530
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms | Allocations: 2369)
+
+
+Started GET "/admin/login" for ::1 at 2024-02-27 11:38:02 +0530
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/shared/_links.erb (Duration: 0.6ms | Allocations: 789)
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (Duration: 9.1ms | Allocations: 10620)
+  Rendered layout vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/layouts/active_admin_logged_out.html.erb (Duration: 10.0ms | Allocations: 11747)
+Completed 200 OK in 24ms (Views: 11.5ms | ActiveRecord: 1.6ms | Allocations: 43910)
+
+
+Started POST "/admin/login" for ::1 at 2024-02-27 11:38:06 +0530
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.9ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/admin
+Completed 303 See Other in 194ms (ActiveRecord: 0.9ms | Allocations: 4010)
+
+
+Started GET "/admin" for ::1 at 2024-02-27 11:38:06 +0530
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/page/index.html.arb (Duration: 4.9ms | Allocations: 6746)
+Completed 200 OK in 12ms (Views: 6.2ms | ActiveRecord: 0.1ms | Allocations: 9674)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-27 11:38:09 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.5ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 134], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 78.8ms | Allocations: 63585)
+Completed 200 OK in 87ms (Views: 78.1ms | ActiveRecord: 3.7ms | Allocations: 66914)
+
+
+Started GET "//payments/retrive_checkout?checkout_session_id=cs_test_a1TQHqzGav8zAiTE1gZ27Bqyx9OhTA7I2RVlDzkMY9svaWGXdWzJhWT8NF" for ::1 at 2024-02-27 11:38:30 +0530
+Processing by PaymentsController#retrive_checkout as */*
+  Parameters: {"checkout_session_id"=>"cs_test_a1TQHqzGav8zAiTE1gZ27Bqyx9OhTA7I2RVlDzkMY9svaWGXdWzJhWT8NF"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mPayment Load (0.6ms)[0m  [1m[34mSELECT "payments".* FROM "payments" WHERE "payments"."user_id" = $1 ORDER BY "payments"."id" DESC LIMIT $2[0m  [["user_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/payments_controller.rb:35:in `retrive_checkout'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/payments_controller.rb:35:in `retrive_checkout'
+  [1m[36mPayment Update (2.4ms)[0m  [1m[33mUPDATE "payments" SET "payment_intent_id" = $1, "payment_status" = $2, "updated_at" = $3 WHERE "payments"."id" = $4[0m  [["payment_intent_id", "pi_3OoJnySI1Y7AHsQa0O5F1UIv"], ["payment_status", "paid"], ["updated_at", "2024-02-27 06:08:31.114896"], ["id", 7]]
+  ↳ app/controllers/payments_controller.rb:35:in `retrive_checkout'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/payments_controller.rb:35:in `retrive_checkout'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 506ms (Views: 0.8ms | ActiveRecord: 7.2ms | Allocations: 7855)
+
+
+Started GET "/admin/payments" for ::1 at 2024-02-27 11:38:35 +0530
+Processing by Admin::PaymentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb
+  [1m[36mPayment Load (0.7ms)[0m  [1m[34mSELECT "payments".* FROM "payments" ORDER BY "payments"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 134], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered vendor/bundle/ruby/3.0.0/gems/activeadmin-3.2.0/app/views/active_admin/resource/index.html.arb (Duration: 52.7ms | Allocations: 54446)
+Completed 200 OK in 57ms (Views: 50.4ms | ActiveRecord: 3.0ms | Allocations: 56364)
+
+
+Started GET "/notifications" for ::1 at 2024-02-27 11:39:10 +0530
+Processing by NotificationsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `authenticate_request'
+  [1m[36mNotification Load (0.2ms)[0m  [1m[34mSELECT "notifications".* FROM "notifications" WHERE "notifications"."user_id" = $1 ORDER BY "notifications"."created_at" DESC[0m  [["user_id", 35]]
+  ↳ app/controllers/notifications_controller.rb:8:in `index'
+No serializer found for resource: #<Notification id: 21, user_id: 35, message: "your order has been placed successfully", read: true, created_at: "2024-02-27 06:03:31.099651000 +0000", updated_at: "2024-02-27 06:03:31.099651000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Notification::ActiveRecord_AssociationRelation (0.18ms)
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.3ms | Allocations: 5271)
+
+

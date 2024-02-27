@@ -33,6 +33,8 @@ gem 'active_model_serializers'
  
 gem 'fcm'
 
+gem 'whenever', require: false
+
 # 
 
 # Use the Puma web server [https://github.com/puma/puma]
