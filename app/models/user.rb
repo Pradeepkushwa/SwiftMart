@@ -54,4 +54,8 @@ class User < ApplicationRecord
   def send_notification_after_create_user
     UserMailer.user_confirmation(self).deliver_now
   end
+
+  def self.user_message
+    puts 'hello'
+  end
 end
