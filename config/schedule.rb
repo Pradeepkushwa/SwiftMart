@@ -11,11 +11,11 @@ set :environment, "development"
 # set :output, "/path/to/my/cron_log.log"
 set :output, "log/cron.log"
 #
-# every 1.minutes do
-#   # command "/usr/bin/some_great_command"
-#   runner "User.user_message"
-#   # rake "some:great:rake:task"
-# end
+every 1.minutes do
+  # command "/usr/bin/some_great_command"
+  runner "User.user_message"
+  # rake "some:great:rake:task"
+end
 
 # every 2.minutes do
 #     runner "UserMailer.user_confirmation(User.last).deliver_now"
