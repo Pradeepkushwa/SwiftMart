@@ -25,7 +25,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 # UI interface debugging-with-the-debug-gem
 gem "sassc"
-gem "sassc-rails"
+# gem "sassc-rails"
 
 gem 'active_model_serializers'
 
@@ -34,6 +34,13 @@ gem 'active_model_serializers'
 gem 'fcm'
 
 gem 'whenever', require: false
+
+# terms and conditions
+# gem 'quill-editor-rails'
+# gem 'activeadmin_quill_editor'
+
+# gem 'activeadmin_json_editor'
+gem 'activeadmin_quill_editor', '~> 0.2.0'
 
 # 
 

@@ -40,6 +40,9 @@ Rails.application.routes.draw do
    get  "/payments/retrive_checkout", to: "payments#retrive_checkout"
 
 
+   resources :terms_and_conditions
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

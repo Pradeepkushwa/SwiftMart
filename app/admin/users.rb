@@ -20,6 +20,7 @@ ActiveAdmin.register User do
   remove_filter :addresses
   remove_filter :payments
   remove_filter :quantities
+  remove_filter :notifications
 
   
   form do |f|
