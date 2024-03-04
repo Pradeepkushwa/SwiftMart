@@ -21,16 +21,32 @@ ActiveAdmin.register TermsAndCondition do
     selectable_column
     id_column
     column :title
-    column :description
-  end
-
-  show do 
-    attributes_table do 
-      row :title
-      row :description
+    column :description do |resource|
+      if resource.description.present?
+        div class: "quill_editor" do
+          resource.description.html_safe
+        end
+      else
+        div "No description found"
+      end
     end
   end
 
+
+  show do
+    attributes_table do
+      row :title
+      row :description do
+        if resource&.description.present?
+          div class: "quill_editor" do
+            resource&.description&.html_safe
+          end
+        else
+          div "No description found"
+        end
+      end
+    end
+  end
 
 
   #
