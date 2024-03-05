@@ -8,6 +8,8 @@ class User < ApplicationRecord
   
   has_one_attached :image
   has_many :quantities
+  has_one :wishlist, dependent: :destroy 
+  # has_many :wishlist_products, through: :wishlists, source: :product
   
   has_many :payments, dependent: :destroy
   has_one :cart, dependent: :destroy 

@@ -25,6 +25,15 @@ Rails.application.routes.draw do
   delete "/remove_product/:id", to: "carts#remove_product"
   get "/my_cart",  to: "carts#view_cart"
 
+  # wishlist 
+
+  # resources :wishlists, only: [:index, :create, :destroy]
+
+  post "/add_product_wishlist/:id", to: "wishlists#add_product_to_wishlist"
+  delete "/remove_product_wishlist/:id", to: "wishlists#remove_product_to_wishlist"
+  get "/my_wishlist", to: "wishlists#view_wishlist"
+
+
   #  addresses
 
   resources :addresses
