@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_27_114335) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_103710) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -150,6 +150,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_114335) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "products_wishlists", id: false, force: :cascade do |t|
+    t.bigint "wishlist_id", null: false
+    t.bigint "product_id", null: false
+    t.index ["product_id", "wishlist_id"], name: "index_products_wishlists_on_product_id_and_wishlist_id"
+    t.index ["wishlist_id", "product_id"], name: "index_products_wishlists_on_wishlist_id_and_product_id"
+  end
+
   create_table "quantities", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "product_id"
@@ -179,10 +186,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_114335) do
     t.string "stripe_id"
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_wishlists_on_product_id"
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
   add_foreign_key "carts", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "orders", "addresses"
+  add_foreign_key "wishlists", "products"
+  add_foreign_key "wishlists", "users"
 end

@@ -21,6 +21,7 @@ ActiveAdmin.register User do
   remove_filter :payments
   remove_filter :quantities
   remove_filter :notifications
+  remove_filter :wishlists
 
   
   form do |f|
