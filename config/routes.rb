@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+  # namespace :admin do
+  # resources :requests do
+  #   collection do
+  #     put 'accept_all'
+  #     put 'reject_all'
+  #     end
+  #   end
+  # end
 
   resources :products
   resources :users
@@ -51,7 +59,14 @@ Rails.application.routes.draw do
 
    resources :terms_and_conditions
 
+   # add request of the veders to sell or items in our eCommerce Plateform
 
+  # resources :requests, only: [] do
+  #   patch :accept
+  #   patch :reject
+  # end
+
+   resources :requests
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
