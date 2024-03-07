@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_05_103710) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_06_100914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -165,6 +165,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_103710) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string "vendor_name"
+    t.string "vendor_email"
+    t.bigint "vendor_mobile"
+    t.string "vendor_address"
+    t.string "vendor_shopname"
+    t.integer "permit", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "requests_users", id: false, force: :cascade do |t|
+    t.bigint "request_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["request_id", "user_id"], name: "index_requests_users_on_request_id_and_user_id"
+    t.index ["user_id", "request_id"], name: "index_requests_users_on_user_id_and_request_id"
+  end
+
   create_table "terms_and_conditions", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -184,6 +204,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_103710) do
     t.datetime "reset_password_sent_at"
     t.boolean "reset_password_used"
     t.string "stripe_id"
+    t.integer "role", default: 0
   end
 
   create_table "wishlists", force: :cascade do |t|
@@ -201,6 +222,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_103710) do
   add_foreign_key "carts", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "orders", "addresses"
+  add_foreign_key "requests", "users"
   add_foreign_key "wishlists", "products"
   add_foreign_key "wishlists", "users"
 end

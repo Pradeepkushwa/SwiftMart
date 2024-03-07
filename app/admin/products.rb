@@ -19,6 +19,7 @@ ActiveAdmin.register Product do
   remove_filter :address
   remove_filter :carts
   remove_filter :quantities
+  remove_filter :wishlists
 
 
   form do |f|
