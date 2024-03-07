@@ -21,7 +21,8 @@ ActiveAdmin.register User do
   remove_filter :payments
   remove_filter :quantities
   remove_filter :notifications
-  remove_filter :wishlists
+  remove_filter :wishlist
+  remove_filter :requests
 
   
   form do |f|
@@ -43,6 +44,7 @@ ActiveAdmin.register User do
     column :last_name
     column :email
     column :phone
+    column :role
     # column :image do |obj|
     #   obj.image.attached? ? (image_tag url_for(obj&.image), style: 'height: 100px; width: 50px;') : "no image"
     # end 
@@ -56,6 +58,7 @@ ActiveAdmin.register User do
          row :last_name
          row :email
          row :phone
+         row :role
         #  row :image do |obj|
         # obj.image.attached? ? (image_tag url_for(obj&.image), style: 'height: 500px; width: 350px;') : "no image"
         #  end

@@ -4,15 +4,20 @@ class UsersController < ApplicationController
 
 
 	def index
-		@users = User.all
-		render json: @users, each_serializer: UserSerializer
+	    @users = User.all
+	    if @user.present?
+            render json: @users, each_serializer: UserSerializer
+        else 
+            render json: {error: "not content found"}, status: "204"
+        end
+
 	end
 
 	def show
 		if @current_user == @user
-			render json: @user, each_serializer: UserSerializer
+			render json: @user, each_serializer: UserSerializer,status: :ok
 		else
-			render json: {error: "you can't show other user"}
+			render json: {error: "you can't show other user"},status: "400"
 		end
 	end
 
@@ -30,27 +35,23 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		if @current_user == @user
-			if @current_user&.update(user_params)
-				render json:{notice: "user is updated successfully"}
-			else
-				render json:{notice: "something went wrong"}
-			end
+		@current_user == @user
+		if @current_user.present?
+			@current_user&.update(user_params)
+			render json:{user:  @current_user, message: "user is updated successfully"}, status: :ok
 		else
-			render json: {error: "you can't update other users"}
+			render json:{message: "something went wrong"}, status: "422"
 		end
 	end
 
 
 	def destroy
-		if @current_user == @user
-			if @current_user.destroy
-				render json: {notice: "user is deleted successfully"}
-			else
-				render json: {message: "something went wrong"}
-			end
+		@current_user == @user
+		if @current_user.present?  
+			@current_user.destroy
+			render json: {message: "user is deleted successfully"}, status: :ok
 		else
-			render json: {error: "you can't delete other users"}
+			render json: {Error: "User not found"}, status: "400"
 		end
 	end
 
