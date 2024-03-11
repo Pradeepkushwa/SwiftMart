@@ -29,8 +29,21 @@ Rails.application.routes.draw do
     # resources :carts
 
   post "/add_product/:id", to: "carts#add_product"
-
   delete "/remove_product/:id", to: "carts#remove_product"
+
+  # resources :products
+
+  # get '/admin/product', to: 'admin#'
+  # get '/admin/product/upload_csv', to: 'admin#upload_csv'
+
+
+  resources :products do
+    collection do
+    post :import_csv
+    get  :import_csv
+    end
+  end
+
   get "/my_cart",  to: "carts#view_cart"
 
   # wishlist 

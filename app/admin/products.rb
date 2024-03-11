@@ -5,7 +5,7 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :mrp, :price, :image
+  permit_params :title, :description, :mrp, :price, :image, :csv_file
   #
   # or
   #
@@ -14,6 +14,48 @@ ActiveAdmin.register Product do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  # importing the bulk data in rails using csv 
+  action_item only: :index do
+    link_to 'Upload CSV', action: 'import_csv'
+  end
+
+  # collection_action :import_csv do
+  #   # debugger
+  #   render 'products/import_csv'
+  # end
+
+  # collection_action :import_csv, method: [:get, :post] do
+  #   # debugger
+  #   products = CsvHelper.convert_to_products(params[:dump][:file])
+  #   Product.transaction do
+  #     products.each(&:save!)
+  #   end
+  #   redirect_to({ action: :index }, notice: 'CSV imported successfully!')
+  # rescue StandardError
+  #   redirect_to({ action: :index },
+  #     flash: { error: 'CSV imported failed! Check the template is correct or contact a developer.' })
+  # end
+
+  collection_action :import_csv, method: [:get, :post] do
+    if request.post?
+      begin
+        raise 'No file attached' unless params.dig(:product, :csv_file).present?
+
+        products = CsvHelper.convert_to_products(params[:product][:csv_file])
+        Product.transaction do
+          products.each(&:save!)
+        end
+        redirect_to({ action: :index }, notice: 'CSV imported successfully!')
+      rescue StandardError => e
+        Rails.logger.error("CSV import failed: #{e.message}")
+        redirect_to({ action: :index },
+          flash: { error: 'CSV import failed! Check the template or contact a developer.' })
+      end
+    else
+      render 'products/import_csv'
+    end
+  end
 
   remove_filter :orders
   remove_filter :address
@@ -29,8 +71,9 @@ ActiveAdmin.register Product do
       f.input :price
       f.input :mrp
       f.input :image, as: :file
+      f.input :csv_file, as: :file, label: "CSV file bulk import"
     end
-    f.actions
+      f.actions
   end
 
   index do
@@ -46,6 +89,8 @@ ActiveAdmin.register Product do
     actions
   end
 
+
+
   show do 
     attributes_table do 
       row :title
@@ -53,7 +98,7 @@ ActiveAdmin.register Product do
       row :price
       row :mrp 
       row :image do |obj|
-      obj.image.attached? ? (image_tag url_for(obj&.image), style: 'height: 300px; width: 350px;') : "no image"
+        obj.image.attached? ? (image_tag url_for(obj&.image), style: 'height: 300px; width: 350px;') : "no image"
       end
     end 
   end
