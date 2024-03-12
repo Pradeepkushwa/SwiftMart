@@ -1,6 +1,7 @@
 class CsvHelper
   class << self
     def convert_to_products(csv_data)
+    # byebug
       products = []
       csv_file = csv_data.read
       CSV.parse(csv_file) do |row|
