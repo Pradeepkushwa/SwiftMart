@@ -3,46 +3,14 @@ source "https://rubygems.org"
 ruby "3.0.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "7.1.2"
+gem "rails", "~> 7.1.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use postgresql as the database for Active Record
+# Use sqlite3 as the database for Active Record
+# gem "sqlite3", "~> 1.4"
 gem "pg", "~> 1.1"
-
-gem "devise"
-
-gem 'activeadmin'
-
-gem "jwt"
-
-gem "actionmailer"
-
-# stripe payment
-gem "stripe"
-gem 'dotenv-rails', :groups => [:development, :test]
-
-# UI interface debugging-with-the-debug-gem
-gem "sassc"
-# gem "sassc-rails"
-
-gem 'active_model_serializers'
-
-# fcm notification 
- 
-gem 'fcm'
-
-gem 'whenever', require: false
-
-# terms and conditions
-# gem 'quill-editor-rails'
-# gem 'activeadmin_quill_editor'
-
-# gem 'activeadmin_json_editor'
-gem 'activeadmin_quill_editor', '~> 0.2.0'
-
-# 
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -75,11 +43,12 @@ gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+# gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem "byebug"
   gem "rspec-rails" 
   gem "factory_bot_rails"
   gem "faker"
@@ -104,6 +73,15 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "byebug"
+gem "devise"
+gem 'activeadmin'
+gem "jwt"
+gem "actionmailer"
+gem 'active_model_serializers'
+gem 'fcm'
+gem "stripe"
+gem 'dotenv-rails', :groups => [:development, :test]
+gem 'arctic_admin'
+gem "sassc-rails"
+gem 'activeadmin_quill_editor', '~> 0.2.0'
 
-# gem "formtastic", github: "justinfrench/formtastic"
